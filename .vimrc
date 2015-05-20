@@ -33,18 +33,20 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
 
 " 読み込むプラグインを記載
-NeoBundle 'tomasr/molokai'				" カラースキーム
+NeoBundle 'tomasr/molokai'								" カラースキーム
 NeoBundle 'sjl/badwolf'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'Shougo/unite.vim'			" ファイル等へのアクセス
-NeoBundle 'scrooloose/nerdtree'			" ファイルのツリー表示
-NeoBundle 'tpope/vim-surround'			" 囲われたテキストの処理（タグや引用符）
-NeoBundle 'mattn/emmet-vim'				" HTMLのタグ構造を簡単に作れる
-NeoBundle 'hail2u/vim-css3-syntax'		" html5のコードをシンタックス表示する
-NeoBundle 'scrooloose/syntastic.git'	" ファイルの構文エラーをチェック（動作確認はとれていない。。。）
-NeoBundle 'Shougo/neocomplete.vim'		" 補完
-
+NeoBundle 'Shougo/unite.vim'							" ファイル等へのアクセス
+NeoBundle 'scrooloose/nerdtree'							" ファイルのツリー表示
+NeoBundle 'tpope/vim-surround'							" 囲われたテキストの処理（タグや引用符）
+NeoBundle 'mattn/emmet-vim'								" HTMLのタグ構造を簡単に作れる
+NeoBundle 'hail2u/vim-css3-syntax'						" html5のコードをシンタックス表示する
+NeoBundle 'scrooloose/syntastic.git'					" ファイルの構文エラーをチェック（動作確認はとれていない。。。）
+NeoBundle 'Shougo/neocomplete.vim'						" 補完
+NeoBundle 'Shougo/neosnippet'							" スニペット
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptのインデント
 
 " インストールのチェック
 NeoBundleCheck
@@ -81,6 +83,26 @@ endif
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 
-" あとは
-" スニペット系
+" neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
