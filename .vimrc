@@ -4,7 +4,8 @@ set columns=200
 set lines=60
 
 "set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,cp932,utf-8
+set fileformats=dos,mac,unix
 set number
 set title
 set ambiwidth=double
@@ -30,7 +31,6 @@ endif
 " NeoBundleを更新するための設定
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 
 " 読み込むプラグインを記載
 NeoBundle 'tomasr/molokai'								" カラースキーム
@@ -47,6 +47,8 @@ NeoBundle 'Shougo/neocomplete.vim'						" 補完
 NeoBundle 'Shougo/neosnippet'							" スニペット
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptのインデント
+
+call neobundle#end()
 
 " インストールのチェック
 NeoBundleCheck
