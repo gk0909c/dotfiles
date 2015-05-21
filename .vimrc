@@ -19,6 +19,8 @@ set hidden "ファイルの保存をしていなくても、べつのファイルを開けるようにする
 set backspace=indent,eol,start "バックスペースを、空白、行末、行頭でも使えるようにする
 set nowildmenu
 set wildmode=longest
+set noswapfile
+set nobackup
 
 " NeoBundle設定   ====================
 " vim起動時のみruntimepathにneobundle.vimを追加
