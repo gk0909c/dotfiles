@@ -1,61 +1,63 @@
-" ƒGƒfƒBƒ^İ’è   ====================
+" ã‚¨ãƒ‡ã‚£ã‚¿è¨­å®š   ====================
 set nocompatible
 set columns=200
 set lines=60
 
-"set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,cp932,utf-8
-set fileformats=dos,mac,unix
+set encoding=utf-8
+set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp
+set fileformat=unix
+set fileformats=unix,dos,mac
 set number
 set title
 set ambiwidth=double
-set tabstop=2 " ƒ^ƒu•
-set shiftwidth=2 " ƒ^ƒu‚ÌˆÚ“®•
-set expandtab " ƒ^ƒu‚Ì‘ã‚í‚è‚É‹ó”’
-set smartindent " ‰üs‚És‚Ì––”ö‚É‡‚í‚¹‚ÄŸ‚Ìs‚ğƒCƒ“ƒfƒ“ƒg
-set nrformats-=octal " 0‚Ån‚Ü‚é”’l‚ğA8i”‚Æ‚µ‚Äˆµ‚í‚È‚¢‚æ‚¤‚É‚·‚é
-set hidden "ƒtƒ@ƒCƒ‹‚Ì•Û‘¶‚ğ‚µ‚Ä‚¢‚È‚­‚Ä‚àA‚×‚Â‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚¯‚é‚æ‚¤‚É‚·‚é
-"set whichwrap=b,s,[,],<,> "ƒJ[ƒ\ƒ‹‚Ì‰ñ‚è‚İ‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚éis––‚Å¨‚ğ‰Ÿ‚·‚ÆAŸ‚Ìs‚Öj‚È‚ñ‚©Œø‚©‚È‚¢‚µ~‚ßB
-set backspace=indent,eol,start "ƒoƒbƒNƒXƒy[ƒX‚ğA‹ó”’As––As“ª‚Å‚àg‚¦‚é‚æ‚¤‚É‚·‚é
+set tabstop=2 " ã‚¿ãƒ–å¹…
+set shiftwidth=2 " ã‚¿ãƒ–ã®ç§»å‹•å¹…
+set expandtab " ã‚¿ãƒ–ã®ä»£ã‚ã‚Šã«ç©ºç™½
+set smartindent " æ”¹è¡Œæ™‚ã«è¡Œã®æœ«å°¾ã«åˆã‚ã›ã¦æ¬¡ã®è¡Œã‚’ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ
+set nrformats-=octal " 0ã§å§‹ã¾ã‚‹æ•°å€¤ã‚’ã€8é€²æ•°ã¨ã—ã¦æ‰±ã‚ãªã„ã‚ˆã†ã«ã™ã‚‹
+set hidden "ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜ã‚’ã—ã¦ã„ãªãã¦ã‚‚ã€ã¹ã¤ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã‚‹ã‚ˆã†ã«ã™ã‚‹
+"set whichwrap=b,s,[,],<,> "ã‚«ãƒ¼ã‚½ãƒ«ã®å›ã‚Šè¾¼ã¿ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚‹ï¼ˆè¡Œæœ«ã§â†’ã‚’æŠ¼ã™ã¨ã€æ¬¡ã®è¡Œã¸ï¼‰ãªã‚“ã‹åŠ¹ã‹ãªã„ã—æ­¢ã‚ã€‚
+set backspace=indent,eol,start "ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã‚’ã€ç©ºç™½ã€è¡Œæœ«ã€è¡Œé ­ã§ã‚‚ä½¿ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
 set nowildmenu
 set wildmode=longest
 set noswapfile
 set nobackup
+set noundofile
 
-" NeoBundleİ’è   ====================
-" vim‹N“®‚Ì‚İruntimepath‚Éneobundle.vim‚ğ’Ç‰Á
+" NeoBundleè¨­å®š   ====================
+" vimèµ·å‹•æ™‚ã®ã¿runtimepathã«neobundle.vimã‚’è¿½åŠ 
 if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
-" neobundle.vim‚Ì‰Šú‰» 
-" NeoBundle‚ğXV‚·‚é‚½‚ß‚Ìİ’è
+" neobundle.vimã®åˆæœŸåŒ– 
+" NeoBundleã‚’æ›´æ–°ã™ã‚‹ãŸã‚ã®è¨­å®š
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" “Ç‚İ‚Şƒvƒ‰ƒOƒCƒ“‚ğ‹LÚ
-NeoBundle 'tomasr/molokai'								" ƒJƒ‰[ƒXƒL[ƒ€
+" èª­ã¿è¾¼ã‚€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’è¨˜è¼‰
+NeoBundle 'tomasr/molokai'								" ã‚«ãƒ©ãƒ¼ã‚¹ã‚­ãƒ¼ãƒ 
 NeoBundle 'sjl/badwolf'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'Shougo/unite.vim'							" ƒtƒ@ƒCƒ‹“™‚Ö‚ÌƒAƒNƒZƒX
-NeoBundle 'scrooloose/nerdtree'							" ƒtƒ@ƒCƒ‹‚ÌƒcƒŠ[•\¦
-NeoBundle 'tpope/vim-surround'							" ˆÍ‚í‚ê‚½ƒeƒLƒXƒg‚Ìˆ—iƒ^ƒO‚âˆø—p•„j
-NeoBundle 'mattn/emmet-vim'								" HTML‚Ìƒ^ƒO\‘¢‚ğŠÈ’P‚Éì‚ê‚é
-NeoBundle 'hail2u/vim-css3-syntax'						" html5‚ÌƒR[ƒh‚ğƒVƒ“ƒ^ƒbƒNƒX•\¦‚·‚é
-NeoBundle 'scrooloose/syntastic.git'					" ƒtƒ@ƒCƒ‹‚Ì\•¶ƒGƒ‰[‚ğƒ`ƒFƒbƒNi“®ìŠm”F‚Í‚Æ‚ê‚Ä‚¢‚È‚¢BBBj
-NeoBundle 'Shougo/neocomplete.vim'						" •âŠ®
-NeoBundle 'Shougo/neosnippet'							" ƒXƒjƒyƒbƒg
+NeoBundle 'Shougo/unite.vim'							" ãƒ•ã‚¡ã‚¤ãƒ«ç­‰ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹
+NeoBundle 'scrooloose/nerdtree'							" ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ„ãƒªãƒ¼è¡¨ç¤º
+NeoBundle 'tpope/vim-surround'							" å›²ã‚ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆã®å‡¦ç†ï¼ˆã‚¿ã‚°ã‚„å¼•ç”¨ç¬¦ï¼‰
+NeoBundle 'mattn/emmet-vim'								" HTMLã®ã‚¿ã‚°æ§‹é€ ã‚’ç°¡å˜ã«ä½œã‚Œã‚‹
+NeoBundle 'hail2u/vim-css3-syntax'						" html5ã®ã‚³ãƒ¼ãƒ‰ã‚’ã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹è¡¨ç¤ºã™ã‚‹
+NeoBundle 'scrooloose/syntastic.git'					" ãƒ•ã‚¡ã‚¤ãƒ«ã®æ§‹æ–‡ã‚¨ãƒ©ãƒ¼ã‚’ãƒã‚§ãƒƒã‚¯ï¼ˆå‹•ä½œç¢ºèªã¯ã¨ã‚Œã¦ã„ãªã„ã€‚ã€‚ã€‚ï¼‰
+NeoBundle 'Shougo/neocomplete.vim'						" è£œå®Œ
+NeoBundle 'Shougo/neosnippet'							" ã‚¹ãƒ‹ãƒšãƒƒãƒˆ
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScript‚ÌƒCƒ“ƒfƒ“ƒg
+NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptã®ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆ
 
 call neobundle#end()
 
-" ƒCƒ“ƒXƒg[ƒ‹‚Ìƒ`ƒFƒbƒN
+" ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 NeoBundleCheck
 
-" ƒ^ƒO•Â‚¶‚Ì©“®•âŠ®i¡‚Ì‚Æ‚±‚ëŒø‚¢‚Ä‚È‚¢BBBj
+" ã‚¿ã‚°é–‰ã˜ã®è‡ªå‹•è£œå®Œï¼ˆä»Šã®ã¨ã“ã‚åŠ¹ã„ã¦ãªã„ã€‚ã€‚ã€‚ï¼‰
 augroup MyXML
   autocmd!
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
@@ -63,24 +65,24 @@ augroup MyXML
   autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
-" ƒJƒ‰[ƒXƒL[ƒ€
+" ã‚«ãƒ©ãƒ¼ã‚¹ã‚­ãƒ¼ãƒ 
 syntax on
 colorscheme Tomorrow-Night
 
-"emmet‚Ìİ’è
+"emmetã®è¨­å®š
 let g:user_emmet_settings = {'indentation' : '  '}
 
-" ƒJ[ƒ\ƒ‹s
+" ã‚«ãƒ¼ã‚½ãƒ«è¡Œ
 set cursorline
 hi clear CursorLine
 hi CursorLineNr term=bold   cterm=NONE ctermfg=228 ctermbg=NONE
 
-" ƒL[ƒoƒCƒ“ƒh
+" ã‚­ãƒ¼ãƒã‚¤ãƒ³ãƒ‰
 noremap <C-U><C-B> :Unite buffer<CR>
-"noremap <C-U><C-F> :Unite file<CR> "NERDTree‚ª‚ ‚ê‚Î‚¢‚ç‚È‚¢H
+"noremap <C-U><C-F> :Unite file<CR> "NERDTreeãŒã‚ã‚Œã°ã„ã‚‰ãªã„ï¼Ÿ
 noremap <C-N><C-T> :NERDTreeToggle<CR>
 
-" ƒ^ƒu(tc, tx, tn, tp, tn(n=1,2,3,,,,))
+" ã‚¿ãƒ–(tc, tx, tn, tp, tn(n=1,2,3,,,,))
 if filereadable(expand('~/.vimrc_tab'))
   source ~/.vimrc_tab
 endif
@@ -107,6 +109,19 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
+"my snippet
+let g:neosnippet#snippets_directory='~/.snippet'
+
+" confirm fileformat to unix
+function! s:set_fileformat()
+        if &fileformat != "unix" && input("setlocal fileformat=unix?[y/n]") == "y"
+                try
+                        setlocal fileformat=unix
+                catch
+                endtry
+        endif
+endfunction
+autocmd BufWritePre * :call <SID>set_fileformat()
