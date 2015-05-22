@@ -23,7 +23,7 @@ function! s:my_tabline()  "{{{
   return s
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " í‚Éƒ^ƒuƒ‰ƒCƒ“‚ğ•\¦
+set showtabline=2 " å¸¸ã«ã‚¿ãƒ–ãƒ©ã‚¤ãƒ³ã‚’è¡¨ç¤º
 
 " The prefix key.
 nnoremap    [Tag]   <Nop>
@@ -32,13 +32,13 @@ nmap    t [Tag]
 for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
-" t1 ‚Å1”Ô¶‚Ìƒ^ƒuAt2 ‚Å1”Ô¶‚©‚ç2”Ô–Ú‚Ìƒ^ƒu‚ÉƒWƒƒƒ“ƒv
+" t1 ã§1ç•ªå·¦ã®ã‚¿ãƒ–ã€t2 ã§1ç•ªå·¦ã‹ã‚‰2ç•ªç›®ã®ã‚¿ãƒ–ã«ã‚¸ãƒ£ãƒ³ãƒ—
 
 map <silent> [Tag]c :tablast <bar> tabnew<CR>
-" tc V‚µ‚¢ƒ^ƒu‚ğˆê”Ô‰E‚Éì‚é
+" tc æ–°ã—ã„ã‚¿ãƒ–ã‚’ä¸€ç•ªå³ã«ä½œã‚‹
 map <silent> [Tag]x :tabclose<CR>
-" tx ƒ^ƒu‚ğ•Â‚¶‚é
+" tx ã‚¿ãƒ–ã‚’é–‰ã˜ã‚‹
 map <silent> [Tag]n :tabnext<CR>
-" tn Ÿ‚Ìƒ^ƒu
+" tn æ¬¡ã®ã‚¿ãƒ–
 map <silent> [Tag]p :tabprevious<CR>
-" tp ‘O‚Ìƒ^ƒu
+" tp å‰ã®ã‚¿ãƒ–
