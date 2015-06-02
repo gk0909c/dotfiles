@@ -51,6 +51,8 @@ NeoBundle 'Shougo/neocomplete.vim'						" 補完
 NeoBundle 'Shougo/neosnippet'							" スニペット
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptのインデント
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-endwise'
 
 call neobundle#end()
 
@@ -67,7 +69,7 @@ augroup END
 
 " カラースキーム
 syntax on
-colorscheme Tomorrow-Night
+colorscheme badwolf
 
 "emmetの設定
 let g:user_emmet_settings = {'indentation' : '  '}
