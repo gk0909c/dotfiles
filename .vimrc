@@ -53,6 +53,9 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptのインデント
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'plasticboy/vim-markdown'							" MarkDown
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
 
 call neobundle#end()
 
@@ -127,3 +130,6 @@ function! s:set_fileformat()
         endif
 endfunction
 autocmd BufWritePre * :call <SID>set_fileformat()
+
+"Markdown suffix
+au BufRead,BufNewFile *.md set filetype=markdown
