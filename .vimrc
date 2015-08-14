@@ -56,6 +56,7 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'plasticboy/vim-markdown'							" MarkDown
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'vim-scripts/javacomplete'            "Java系
 
 call neobundle#end()
 
@@ -133,3 +134,7 @@ autocmd BufWritePre * :call <SID>set_fileformat()
 
 "Markdown suffix
 au BufRead,BufNewFile *.md set filetype=markdown
+
+"Java
+autocmd FileType java :setlocal omnifunc=javacomplete#Complete
+autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
