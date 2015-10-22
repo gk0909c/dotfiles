@@ -123,7 +123,7 @@ let g:neosnippet#snippets_directory='~/.snippet'
 
 " confirm fileformat to unix
 function! s:set_fileformat()
-        if &fileformat != "unix" && input("setlocal fileformat=unix?[y/n]") == "y"
+        if &filetype != "dosbatch" && &fileformat != "unix" && input("setlocal fileformat=unix?[y/n]") == "y"
                 try
                         setlocal fileformat=unix
                 catch
