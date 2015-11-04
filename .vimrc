@@ -138,3 +138,6 @@ au BufRead,BufNewFile *.md set filetype=markdown
 "Java
 autocmd FileType java :setlocal omnifunc=javacomplete#Complete
 autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+
+"Markdown
+let g:vim_markdown_folding_disabled=1
