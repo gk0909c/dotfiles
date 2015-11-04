@@ -24,6 +24,11 @@ set noswapfile
 set nobackup
 set noundofile
 
+augroup vimrc
+  autocmd! FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd! FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4
+augroup END
+
 " NeoBundle設定   ====================
 " vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
@@ -141,3 +146,20 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 
 "Markdown
 let g:vim_markdown_folding_disabled=1
+
+"blank character
+set list
+set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
+
+function! ZenkakuSpace()
+    highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+    augroup ZenkakuSpace
+        autocmd!
+        autocmd ColorScheme       * call ZenkakuSpace()
+        autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+    augroup END
+    call ZenkakuSpace()
+endif
