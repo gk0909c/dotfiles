@@ -147,6 +147,11 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 "Markdown
 let g:vim_markdown_folding_disabled=1
 
+augroup Markdown
+  autocmd!
+  autocmd Filetype markdown inoremap <S-CR> <SPACE><SPACE><CR>
+augroup END
+
 "blank character
 set list
 set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
