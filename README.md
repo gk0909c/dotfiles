@@ -15,3 +15,10 @@ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vi
 
 after this commands, open vim and do Bundle Install
 
+## memo ##
+when colorscheme is not set on default, do this.  
+I hava this problem on vagrant ubuntu 14.04.
+```
+echo "export TERM=xterm-256color" >> ~/.bashrc
+```
+
