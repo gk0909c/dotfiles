@@ -1,6 +1,5 @@
 # my Vim dotfiles #
 ## usage ##
-
 ```bash
 mkdir -p ~/dotfiles
 git clone https://github.com/satk0909/dotfiles.git ~/dotfiles/
@@ -11,7 +10,7 @@ git clone https://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vi
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.vimrc_tab ~/.vimrc_tab
 ln -sf ~/dotfiles/.snippet ~/.vim/my_snippet
-```
+ln -sf ~/dotfiles/ftplugin/ ~/.vim/ftplugin
 
 after this commands, open vim and do Bundle Install
 
