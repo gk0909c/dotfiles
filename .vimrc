@@ -86,6 +86,12 @@ if has('syntax')
     call ZenkakuSpace()
 endif
 
+" ime controll
+set t_SI+=[<r
+set t_EI+=[<s[<0t
+set t_te+=[<0t[<s
+set timeoutlen=100
+
 " tab setting
 if filereadable(expand('~/.vimrc_tab'))
   source ~/.vimrc_tab
