@@ -1,165 +1,82 @@
-" エディタ設定   ====================
-set nocompatible
-set columns=200
-set lines=60
+" basic
+set number
+set title
+set backspace=indent,eol,start
+set noswapfile
+set nobackup
+set noundofile
+set ambiwidth=double
 
+" cursor setting
+set cursorline
+hi clear CursorLine
+hi CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE
+autocmd ColorScheme * highlight LineNr ctermfg=170
+
+" command menu
+set wildmenu
+set wildmode=longest:full,full
+
+" basic tab setting
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" indent setting
+set smartindent
+set autoindent
+augroup auto_comment_off
+  autocmd!
+  autocmd BufEnter * setlocal formatoptions-=r
+  autocmd BufEnter * setlocal formatoptions-=o
+augroup END
+
+" encofing & fileformats
 set encoding=utf-8
 set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp
 set fileformat=unix
 set fileformats=unix,dos,mac
-set number
-set title
-set ambiwidth=double
-set tabstop=2 " タブ幅
-set shiftwidth=2 " タブの移動幅
-set expandtab " タブの代わりに空白
-set smartindent " 改行時に行の末尾に合わせて次の行をインデント
-set nrformats-=octal " 0で始まる数値を、8進数として扱わないようにする
-set hidden "ファイルの保存をしていなくても、べつのファイルを開けるようにする
-"set whichwrap=b,s,[,],<,> "カーソルの回り込みができるようになる（行末で→を押すと、次の行へ）なんか効かないし止め。
-set backspace=indent,eol,start "バックスペースを、空白、行末、行頭でも使えるようにする
-set nowildmenu
-set wildmode=longest
-set noswapfile
-set nobackup
-set noundofile
 
-augroup vimrc
-  autocmd! FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd! FileType markdown setlocal shiftwidth=4 tabstop=4 softtabstop=4
-augroup END
-
-" NeoBundle設定   ====================
-" vim起動時のみruntimepathにneobundle.vimを追加
-if has('vim_starting')
-  set nocompatible
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-
-" neobundle.vimの初期化 
-" NeoBundleを更新するための設定
-call neobundle#begin(expand('~/.vim/bundle'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" 読み込むプラグインを記載
-NeoBundle 'tomasr/molokai'								" カラースキーム
-NeoBundle 'sjl/badwolf'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
-NeoBundle 'Shougo/unite.vim'							" ファイル等へのアクセス
-NeoBundle 'scrooloose/nerdtree'							" ファイルのツリー表示
-NeoBundle 'tpope/vim-surround'							" 囲われたテキストの処理（タグや引用符）
-NeoBundle 'mattn/emmet-vim'								" HTMLのタグ構造を簡単に作れる
-NeoBundle 'hail2u/vim-css3-syntax'						" html5のコードをシンタックス表示する
-NeoBundle 'scrooloose/syntastic.git'					" ファイルの構文エラーをチェック（動作確認はとれていない。。。）
-NeoBundle 'Shougo/neocomplete.vim'						" 補完
-NeoBundle 'Shougo/neosnippet'							" スニペット
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'jiangmiao/simple-javascript-indenter'		" JavaScriptのインデント
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'plasticboy/vim-markdown'							" MarkDown
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'vim-scripts/javacomplete'            "Java系
-
-call neobundle#end()
-
-" インストールのチェック
-NeoBundleCheck
-
-" タグ閉じの自動補完（今のところ効いてない。。。）
-augroup MyXML
+" paste controll
+augroup paste-setting
   autocmd!
-  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
-  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
+  autocmd InsertLeave * set nopaste
 augroup END
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
-" カラースキーム
-syntax on
-colorscheme badwolf
-
-"emmetの設定
-let g:user_emmet_settings = {'indentation' : '  '}
-
-" カーソル行
-set cursorline
-hi clear CursorLine
-hi CursorLineNr term=bold   cterm=NONE ctermfg=228 ctermbg=NONE
-
-" キーバインド
-noremap <C-U><C-B> :Unite buffer<CR>
-"noremap <C-U><C-F> :Unite file<CR> "NERDTreeがあればいらない？
-noremap <C-N><C-T> :NERDTreeToggle<CR>
-
-" タブ(tc, tx, tn, tp, tn(n=1,2,3,,,,))
-if filereadable(expand('~/.vimrc_tab'))
-  source ~/.vimrc_tab
-endif
-
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-
-" neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-"let g:neosnippet#enable_snipmate_compatibility = 1
-"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-"my snippet
-let g:neosnippet#snippets_directory='~/.snippet'
+" auto make directory
+augroup vimrc-auto-mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)
+    if !isdirectory(a:dir) && (a:force ||
+    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction
+augroup END
 
 " confirm fileformat to unix
 function! s:set_fileformat()
-        if &filetype != "dosbatch" && &fileformat != "unix" && input("setlocal fileformat=unix?[y/n]") == "y"
-                try
-                        setlocal fileformat=unix
-                catch
-                endtry
-        endif
+  if &filetype != "dosbatch" && &fileformat != "unix" && input("setlocal fileformat=unix?[y/n]") == "y"
+    try
+      setlocal fileformat=unix
+    catch
+    endtry
+  endif
 endfunction
 autocmd BufWritePre * :call <SID>set_fileformat()
 
-"Markdown suffix
-au BufRead,BufNewFile *.md set filetype=markdown
-
-"Java
-autocmd FileType java :setlocal omnifunc=javacomplete#Complete
-autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
-
-"Markdown
-let g:vim_markdown_folding_disabled=1
-
-augroup Markdown
-  autocmd!
-  autocmd Filetype markdown inoremap <S-CR> <SPACE><SPACE><CR>
-augroup END
-
-"blank character
+" disp blank characters
 set list
 set listchars=tab:>.,trail:_,eol:↲,extends:>,precedes:<,nbsp:%
 
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
-
 if has('syntax')
     augroup ZenkakuSpace
         autocmd!
@@ -168,3 +85,118 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
+
+" tab setting
+if filereadable(expand('~/.vimrc_tab'))
+  source ~/.vimrc_tab
+endif
+
+" NeoBundle
+if 0 | endif
+ 
+if &compatible
+  set nocompatible
+endif
+
+set runtimepath^=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'cohama/lexima.vim'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tpope/vim-fugitive'
+
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
+
+" color schema
+syntax on
+set background=dark
+if isdirectory(expand('~/.vim/bundle/vim-hybrid'))
+  colorscheme hybrid
+endif
+
+" NeoComplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+    \ }
+
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
+
+" NeoSnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+let g:neosnippet#snippets_directory='~/.vim/my_snippet'
+
+" NerdTree
+noremap <C-N><C-T> :NERDTreeToggle<CR>
+
+" Unite
+noremap <C-U><C-B> :Unite buffer<CR>
+
+" Markdown setting
+let g:vim_markdown_folding_disabled=1
+
+augroup Markdown
+  autocmd!
+  autocmd Filetype markdown inoremap <S-CR> <SPACE><SPACE><CR>
+augroup END
+
+
