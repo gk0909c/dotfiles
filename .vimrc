@@ -121,6 +121,7 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'davidhalter/jedi-vim'
 
 call neobundle#end()
 filetype plugin indent on
@@ -174,8 +175,13 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.javascript = '[^. \t]\.\%(\h\w*\)\?'
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 " NeoSnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -205,4 +211,9 @@ augroup Markdown
   autocmd Filetype markdown inoremap <S-CR> <SPACE><SPACE><CR>
 augroup END
 
+" jedi-vim
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType python setlocal completeopt-=preview
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
 
