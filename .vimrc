@@ -122,6 +122,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'hynek/vim-python-pep8-indent'
 
 call neobundle#end()
 filetype plugin indent on
