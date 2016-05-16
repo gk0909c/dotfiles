@@ -34,6 +34,7 @@ augroup MyAutoCmd
   
   autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType apexcode setlocal shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
 " }}}
 
@@ -113,9 +114,14 @@ function! LoadMyColorshcheme()
 endfunction
 " }}}
 
-" my commands {{{
+" my commands and keymap {{{
 command! GenDocJs :call s:GenDocJs()
 
+augroup MyAutoCmd
+  autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
+  autocmd Filetype visualforce inoremap <buffer> </ </<C-x><C-o>
+augroup END
 " }}}
 
 " NeoBundle {{{
@@ -248,6 +254,8 @@ let g:neocomplete#force_omni_input_patterns.java =
     \ '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.groovy =
     \ '\%(\h\w*\|)\)\.\w*'
+" let g:neocomplete#force_omni_input_patterns.apexcode =
+"     \ '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " }}}
 
@@ -262,6 +270,8 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+let g:neosnippet#snippets_directory=[]
 " }}}
 
 " syntastic {{{
@@ -271,8 +281,8 @@ let g:syntastic_check_on_wq = 0
 
 " vim-force.com setting {{{
 if neobundle#tap('vim-force.com')
-  function neobundle#tapped.hooks.on_source(bundle)
-    let l:base_dir = expand('~/vim-force/')
+  function! neobundle#tapped.hooks.on_source(bundle)
+    let l:base_dir = expand('~/.vim-force/')
     let l:properties_dir = l:base_dir . 'properties'
     let l:temp_dir = l:base_dir . 'temp'
     let l:backup_dir = l:base_dir . 'backup'
@@ -297,17 +307,27 @@ if neobundle#tap('vim-force.com')
   
     let g:apex_API_version="36.0"
     let g:apex_server=1
+    let g:apex_server_timeoutSec=60*30
   
     if !empty($http_proxy)
       let s:proxy_info = split($http_proxy, ':')
       let g:apex_tooling_force_dot_com_extra_params="--http.proxyHost=" . s:proxy_info[1][2:-1] . " --http.proxyPort=" . s:proxy_info[2]
+    endif
+    call add(g:neosnippet#snippets_directory, neobundle#get('vim-force.com').installed_path . '/snippets')
+
+    if s:is_windows
+      let g:apex_binary_tee = "C:\\Program Files\\Git\\usr\\bin\\tee.exe"
+      let g:apex_binary_touch = "C:\\Program Files\\Git\\usr\\bin\\touch.exe"
     endif
   endfunction
 
   call neobundle#untap()
 endif
 " filetypes related sfdc are owned in vim-force plugin
-source ~/.vim/bundle/vim-force.com/ftdetect/vim-force.com.vim
+if neobundle#is_installed('vim-force.com')
+  let s:vim_force_installed_path = neobundle#get('vim-force.com').installed_path . '/ftdetect/vim-force.com.vim'
+  execute 'source ' . s:vim_force_installed_path
+endif
 " }}}
 
 " vim-monster setting {{{
