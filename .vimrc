@@ -1,12 +1,23 @@
+" encoding setting {{{
 set encoding=utf-8
 set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp
 set fileformat=unix
 set fileformats=unix,dos,mac
+" }}}
 
+" filetype setting {{{
 augroup MyAutoCmd
   autocmd!
   autocmd BufNewFile,BufRead *.gradle set filetype=groovy
 augroup END
+" }}}
+
+" backup setting (don't create) {{{
+set nowritebackup
+set nobackup
+set noswapfile
+set backupdir-=.
+" }}}
 
 " display setting {{{
 set number
