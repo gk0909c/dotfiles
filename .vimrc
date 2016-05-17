@@ -86,7 +86,7 @@ function! s:GenDocJs()
 endfunction
 
 " markdown new line
-function! s:MarkdownIndent()
+function! MarkdownIndent()
   let now_line = getline(".")
   let now_line = substitute(now_line, '^\s*\(.\{-}\)\s*$', '\1', '')
   let first_char = now_line[0]
@@ -153,6 +153,7 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'cohama/agit.vim'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'cohama/lexima.vim'
 NeoBundleLazy 'marijnh/tern_for_vim', {
@@ -221,12 +222,15 @@ nnoremap [vimshell]n :<C-u>new<CR><ESC>:VimShell<CR><ESC><C-w>j
 nnoremap [vimshell]v :<C-u>vnew<CR><ESC>:VimShell<CR><ESC><C-w>l
 " }}}
 
-" Fugitive {{{
-nnoremap [fugitive] <Nop>
-nmap <Space>g [fugitive]
-nnoremap [fugitive]s :<C-u>Gstatus<CR>7j
-nnoremap [fugitive]c :<C-u>Gcommit<CR>i
-nnoremap [fugitive]ps :<C-u>Gpush<Space>
+" git setting {{{
+nnoremap [git] <Nop>
+nmap <Space>g [git]
+nnoremap [git]s :<C-u>Gstatus<CR>7j
+nnoremap [git]c :<C-u>Gcommit<CR>i
+nnoremap [git]ps :<C-u>Gpush<Space>
+
+nnoremap [git]v :<C-u>Agit<CR>
+nnoremap [git]l :<C-u>!git log -20 --no-merges --date=short --pretty='format:\%C(yellow)\%h \%C(green)\%cd \%C(blue)\%an\%C(red)\%d \%C(reset)\%s'<CR>
 " }}}
 
 " tab {{{
@@ -254,8 +258,8 @@ let g:neocomplete#force_omni_input_patterns.java =
     \ '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.groovy =
     \ '\%(\h\w*\|)\)\.\w*'
-" let g:neocomplete#force_omni_input_patterns.apexcode =
-"     \ '\%(\h\w*\|)\)\.\w*'
+let g:neocomplete#force_omni_input_patterns.apexcode =
+    \ '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " }}}
 
@@ -346,7 +350,7 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 augroup MyAutoCmd
-  autocmd Filetype markdown inoremap <silent> <S-CR> <C-R>=s:MarkdownIndent()<CR>
+  autocmd Filetype markdown inoremap <silent> <S-CR> <C-R>=MarkdownIndent()<CR>
 augroup END
 " その内、Ctrl-Enterとかで、新しいリスト、とかもやりたい
 " }}}
