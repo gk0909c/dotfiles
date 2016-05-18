@@ -98,16 +98,32 @@ endfunction
 
 " markdown new line
 function! MarkdownIndent()
-  let now_line = getline(".")
-  let now_line = substitute(now_line, '^\s*\(.\{-}\)\s*$', '\1', '')
-  let first_char = now_line[0]
-  let return_str = "  \n"
+  let l:list_char = s:GetMarkdownListChar()
+  let l:indent_str = repeat(' ', shiftwidth())
+  return s:MarkdownNewLine(l:list_char, l:indent_str, l:indent_str)
+endfunction
+
+" markdown new list item
+function! MarkdownNewList()
+  let l:list_char = s:GetMarkdownListChar()
+  return s:MarkdownNewLine(l:list_char, '', l:list_char . ' ')
+endfunction
+
+" markdown new line
+function! s:MarkdownNewLine(list_char, suffix, prefix)
+  let l:return_str = "\n"
   
-  if first_char == '+'
-    let return_str = join([return_str, "  "], '')
+  if a:list_char =~ '\v[+*-]'
+    let return_str = a:suffix . l:return_str . a:prefix
   endif
-  
-  return return_str
+
+  return l:return_str
+endfunction
+
+" get markdown list char
+function! s:GetMarkdownListChar()
+  let l:now_line = substitute(getline('.'), '^\s*\(.\{-}\)\s*$', '\1', '')
+  return l:now_line[0]
 endfunction
 
 " load my colorscheme
@@ -361,9 +377,11 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 augroup MyAutoCmd
-  autocmd Filetype markdown inoremap <silent> <S-CR> <C-R>=MarkdownIndent()<CR>
+  autocmd Filetype markdown inoremap <expr> <silent> <S-CR> MarkdownIndent()
+  autocmd Filetype markdown inoremap <expr> <silent> <C-CR> MarkdownNewList()
 augroup END
-" その内、Ctrl-Enterとかで、新しいリスト、とかもやりたい
+" その内、Ctrl-Enterとかで、新しいリスト、とかもやりたい > リスト内でインデン
+" トしてる時が微妙
 " }}}
 
 " eclim setting {{{
