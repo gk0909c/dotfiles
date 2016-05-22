@@ -63,6 +63,11 @@ endif
 " }}}
 
 " functions {{{
+" is windows
+function! IsWindows()
+  return s:is_windows
+endfunction
+
 " make directory
 function! s:Mkdir(dir)
   if !isdirectory(a:dir)
