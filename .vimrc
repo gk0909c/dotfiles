@@ -105,7 +105,7 @@ endfunction
 function! MarkdownIndent()
   let l:list_char = s:GetMarkdownListChar()
   let l:indent_str = repeat(' ', shiftwidth())
-  return s:MarkdownNewLine(l:list_char, l:indent_str, l:indent_str)
+  return s:MarkdownNewLine(l:list_char, '  ', l:indent_str)
 endfunction
 
 " markdown new list item
@@ -120,6 +120,8 @@ function! s:MarkdownNewLine(list_char, suffix, prefix)
   
   if a:list_char =~ '\v[+*-]'
     let return_str = a:suffix . l:return_str . a:prefix
+  elseif !empty(a:suffix)
+    let return_str = a:suffix . l:return_str
   endif
 
   return l:return_str
@@ -127,8 +129,8 @@ endfunction
 
 " get markdown list char
 function! s:GetMarkdownListChar()
-  let l:now_line = substitute(getline('.'), '^\s*\(.\{-}\)\s*$', '\1', '')
-  return l:now_line[0]
+  let l:left_trimed_line = substitute(getline('.'), '^\s*\(.\{-}\)\s*$', '\1', '')
+  return l:left_trimed_line[0]
 endfunction
 
 " load my colorscheme
