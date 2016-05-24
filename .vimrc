@@ -17,6 +17,7 @@ set nowritebackup
 set nobackup
 set noswapfile
 set backupdir-=.
+set noundofile
 " }}}
 
 " display setting {{{
@@ -188,6 +189,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'cohama/agit.vim'
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'cohama/lexima.vim'
 NeoBundleLazy 'marijnh/tern_for_vim', {
@@ -195,7 +197,7 @@ NeoBundleLazy 'marijnh/tern_for_vim', {
       \ 'on_ft': [ 'javascript' ],
       \ }
 NeoBundle 'scrooloose/syntastic', {
-      \ 'build': {'others': 'npm install -g jshint'}
+      \ 'build': {'others': 'npm install -g eslint'}
       \ }
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundleLazy 'neowit/vim-force.com', {
@@ -313,6 +315,7 @@ let g:neosnippet#snippets_directory=[]
 " }}}
 
 " syntastic {{{
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 0
 "}}}
