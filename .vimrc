@@ -31,6 +31,10 @@ set cursorline
 set backspace=indent,eol,start
 " }}}
 
+" cursor {{{
+set whichwrap=b,s,h,l
+" }}}
+
 " indent {{{
 set tabstop=2
 set shiftwidth=2
