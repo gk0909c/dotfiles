@@ -192,7 +192,9 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'cohama/agit.vim'
+NeoBundleLazy 'cohama/agit.vim', {
+      \ 'on_cmd' : 'Agit'
+      \}
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'cohama/lexima.vim'
@@ -215,16 +217,25 @@ NeoBundleLazy 'osyo-manga/vim-monster', {
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
       \ 'on_ft': [ 'javascript' ]
       \ }
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundleLazy 'plasticboy/vim-markdown', {
+      \ 'on_ft': [ 'markdown' ]
+      \}
 NeoBundle 'Konfekt/FastFold'
-NeoBundle 'kannokanno/previm'
+NeoBundleLazy 'kannokanno/previm', {
+      \ 'on_cmd': [ 'PrevimOpen' ]
+      \ }
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'ervandew/eclim'
 NeoBundleLazy 'davidhalter/jedi-vim', {
       \ 'build': {'others': 'git submodule update --init'},
       \ 'on_ft': [ 'python' ]
       \ }
-NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundleLazy 'hynek/vim-python-pep8-indent', {
+      \ 'on_ft': ['python']
+      \}
+NeoBundleLazy 'jalvesaq/Nvim-R', {
+      \ 'on_ft': ['r']
+      \}
 
 call neobundle#end()
 filetype plugin indent on
@@ -294,13 +305,12 @@ let g:neocomplete#enable_auto_close_preview = 1
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_omni_input_patterns.java =
-    \ '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.groovy =
-    \ '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.apexcode =
-    \ '\%(\h\w*\|)\)\.\w*'
+let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
+let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
+let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+" let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
+
 " }}}
 
 " Neo snippet {{{
@@ -412,3 +422,17 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 " }}}
 
+" Nvim-R setting {{{
+" use tmux2.0, need tmux.config(see Nvim-R doc)
+" 1. exec tmax, 2. exec vim, 3. start R (\rf)
+" if in nvim, tmux is no need.(use nvim term)
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1
+" let R_vsplit = 1
+augroup MyAutoCmd
+  " need to consider these mappings....
+  autocmd FileType r inoremap <C-z> <C-x><C-o>
+  autocmd FileType r inoremap <C-b> <C-x><C-a>
+augroup END
+" }}}
