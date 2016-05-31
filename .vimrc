@@ -107,34 +107,81 @@ function! s:GenDocJs()
 endfunction
 
 " markdown new line
-function! MarkdownIndent()
-  let l:list_char = s:GetMarkdownListChar()
+" mode: 1 -> cr and indent, 2 -> create new list item
+function! MarkdownNewLine(mode)
+  let l:line = line('.')
+  let l:first_char = s:GetFirstChar(l:line)
+
+  if a:mode == 1
+    let l:line_str = s:MarkdownIndent(l:line, l:first_char)
+  else
+    let l:line_str = s:MarkdownNewList(l:line, l:first_char)
+  endif
+
+  call append(l:line, l:line_str)
+  call cursor(l:line + 1, 0)
+endfunction
+
+" markdown continue paragraph
+function! s:MarkdownIndent(line, first_char)
   let l:indent_str = repeat(' ', shiftwidth())
-  return s:MarkdownNewLine(l:list_char, '  ', l:indent_str)
+  let l:tmp_indent = repeat(' ', indent(a:line))
+
+  if s:IsMarkdownlistPrefix(a:first_char)
+    return l:tmp_indent . l:indent_str
+  endif
+
+  return l:tmp_indent
 endfunction
 
 " markdown new list item
-function! MarkdownNewList()
-  let l:list_char = s:GetMarkdownListChar()
-  return s:MarkdownNewLine(l:list_char, '', l:list_char . ' ')
-endfunction
+function! s:MarkdownNewList(line, first_char)
+  let l:indent_size = indent(a:line)
 
-" markdown new line
-function! s:MarkdownNewLine(list_char, suffix, prefix)
-  let l:return_str = "\n"
-  
-  if a:list_char =~ '\v[+*-]'
-    let return_str = a:suffix . l:return_str . a:prefix
-  elseif !empty(a:suffix)
-    let return_str = a:suffix . l:return_str
+  if s:IsMarkdownlistPrefix(a:first_char)
+    let l:first_char = a:first_char
+  else
+    let l:start_line = s:SearchStartIndent(l:indent_size, a:line)
+    let l:first_char = s:GetFirstChar(l:start_line)
+    let l:indent_size = l:indent_size - shiftwidth()
+  endif
+  let l:indent_str = repeat(' ', l:indent_size)
+
+  if l:first_char =~ '\v[0-9]'
+    let l:prefix = l:first_char + 1 . '.'
+  else
+    let l:prefix = l:first_char 
   endif
 
-  return l:return_str
+  if s:IsMarkdownlistPrefix(l:first_char)
+    return l:indent_str . l:prefix . ' '
+  endif
+
+  return l:indent_str 
+endfunction
+
+" Search start paragraph
+function! s:SearchStartIndent(temp_indent, row)
+  let l:indent = indent(a:row)
+  echom 'now : ' . a:row . ', tmp : ' . a:temp_indent . ', indent : '. l:indent
+
+  if l:indent >= a:temp_indent
+    let l:ret = s:SearchStartIndent(a:temp_indent, a:row - 1)
+  else
+    let l:ret = a:row
+  endif
+
+  return l:ret
+endfunction
+
+" judge markdown list prefix char
+function! s:IsMarkdownlistPrefix(char)
+  return a:char =~ '\v([+*-]|[0-9])'
 endfunction
 
 " get markdown list char
-function! s:GetMarkdownListChar()
-  let l:left_trimed_line = substitute(getline('.'), '^\s*\(.\{-}\)\s*$', '\1', '')
+function! s:GetFirstChar(row)
+  let l:left_trimed_line = substitute(getline(a:row), '^\s*\(.\{-}\)\s*$', '\1', '')
   return l:left_trimed_line[0]
 endfunction
 
@@ -400,12 +447,13 @@ let g:used_javascript_libs = 'jasmine'
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
+function! MyTmpFunc()
+  call append('.', 'test string')
+endfunction
 augroup MyAutoCmd
-  autocmd Filetype markdown inoremap <expr> <silent> <S-CR> MarkdownIndent()
-  autocmd Filetype markdown inoremap <expr> <silent> <C-CR> MarkdownNewList()
+  autocmd Filetype markdown inoremap <silent> <C-j> <Space><Space><ESC>:call MarkdownNewLine(1)<CR>A
+  autocmd Filetype markdown inoremap <silent> <C-l> <ESC>:call MarkdownNewLine(2)<CR>A
 augroup END
-" その内、Ctrl-Enterとかで、新しいリスト、とかもやりたい > リスト内でインデン
-" トしてる時が微妙
 " }}}
 
 " eclim setting {{{
@@ -431,8 +479,8 @@ let R_applescript = 0
 let R_tmux_split = 1
 " let R_vsplit = 1
 augroup MyAutoCmd
-  " need to consider these mappings....
-  autocmd FileType r inoremap <C-z> <C-x><C-o>
-  autocmd FileType r inoremap <C-b> <C-x><C-a>
+  " need to consider these mappings...
+  " autocmd FileType r inoremap <C-z> <C-x><C-o>
+  " autocmd FileType r inoremap <C-b> <C-x><C-a>
 augroup END
 " }}}
