@@ -283,6 +283,8 @@ NeoBundleLazy 'hynek/vim-python-pep8-indent', {
 NeoBundleLazy 'jalvesaq/Nvim-R', {
       \ 'on_ft': ['r']
       \}
+NeoBundle 'thinca/vim-themis'
+NeoBundle 'thinca/vim-zenspace'
 
 call neobundle#end()
 filetype plugin indent on
@@ -483,4 +485,8 @@ augroup MyAutoCmd
   " autocmd FileType r inoremap <C-z> <C-x><C-o>
   " autocmd FileType r inoremap <C-b> <C-x><C-a>
 augroup END
+" }}}
+
+" others {{{
+let g:zenspace#default_mode = 'on'
 " }}}
