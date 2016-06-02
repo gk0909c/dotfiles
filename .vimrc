@@ -89,8 +89,6 @@ function! s:GenDocJs()
   let l:params = matchstr(l:text, '([^)]*)')
   let l:paramPat = '\([$a-zA-Z_0-9]\+\)[, ]*\(.*\)'
 
-  echomsg params
- 
   let l:vars = []
   let l:matchlist = matchlist(l:params, l:paramPat)
 
@@ -104,85 +102,6 @@ function! s:GenDocJs()
   call append(l:line - 1, l:comment)
   call cursor(l:line + 1, l:indent + 3)
   startinsert!
-endfunction
-
-" markdown new line
-" mode: 1 -> cr and indent, 2 -> create new list item
-function! MarkdownNewLine(mode)
-  let l:line = line('.')
-  let l:first_char = s:GetFirstChar(l:line)
-
-  if a:mode == 1
-    let l:line_str = s:MarkdownIndent(l:line, l:first_char)
-  else
-    let l:line_str = s:MarkdownNewList(l:line, l:first_char)
-  endif
-
-  call append(l:line, l:line_str)
-  call cursor(l:line + 1, 0)
-endfunction
-
-" markdown continue paragraph
-function! s:MarkdownIndent(line, first_char)
-  let l:indent_str = repeat(' ', shiftwidth())
-  let l:tmp_indent = repeat(' ', indent(a:line))
-
-  if s:IsMarkdownlistPrefix(a:first_char)
-    return l:tmp_indent . l:indent_str
-  endif
-
-  return l:tmp_indent
-endfunction
-
-" markdown new list item
-function! s:MarkdownNewList(line, first_char)
-  let l:indent_size = indent(a:line)
-
-  if s:IsMarkdownlistPrefix(a:first_char)
-    let l:first_char = a:first_char
-  else
-    let l:start_line = s:SearchStartIndent(l:indent_size, a:line)
-    let l:first_char = s:GetFirstChar(l:start_line)
-    let l:indent_size = l:indent_size - shiftwidth()
-  endif
-  let l:indent_str = repeat(' ', l:indent_size)
-
-  if l:first_char =~ '\v[0-9]'
-    let l:prefix = l:first_char + 1 . '.'
-  else
-    let l:prefix = l:first_char 
-  endif
-
-  if s:IsMarkdownlistPrefix(l:first_char)
-    return l:indent_str . l:prefix . ' '
-  endif
-
-  return l:indent_str 
-endfunction
-
-" Search start paragraph
-function! s:SearchStartIndent(temp_indent, row)
-  let l:indent = indent(a:row)
-  echom 'now : ' . a:row . ', tmp : ' . a:temp_indent . ', indent : '. l:indent
-
-  if l:indent >= a:temp_indent
-    let l:ret = s:SearchStartIndent(a:temp_indent, a:row - 1)
-  else
-    let l:ret = a:row
-  endif
-
-  return l:ret
-endfunction
-
-" judge markdown list prefix char
-function! s:IsMarkdownlistPrefix(char)
-  return a:char =~ '\v([+*-]|[0-9])'
-endfunction
-
-" get markdown list char
-function! s:GetFirstChar(row)
-  let l:left_trimed_line = substitute(getline(a:row), '^\s*\(.\{-}\)\s*$', '\1', '')
-  return l:left_trimed_line[0]
 endfunction
 
 " load my colorscheme
@@ -243,7 +162,7 @@ NeoBundleLazy 'cohama/agit.vim', {
       \ 'on_cmd' : 'Agit'
       \}
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'kana/vim-smartinput'
+"NeoBundle 'kana/vim-smartinput'
 NeoBundle 'cohama/lexima.vim'
 NeoBundleLazy 'marijnh/tern_for_vim', {
       \ 'build': {'others': 'npm install'},
@@ -285,6 +204,7 @@ NeoBundleLazy 'jalvesaq/Nvim-R', {
       \}
 NeoBundle 'thinca/vim-themis'
 NeoBundle 'thinca/vim-zenspace'
+NeoBundle 'gk0909c/md-nl'
 
 call neobundle#end()
 filetype plugin indent on
@@ -449,12 +369,9 @@ let g:used_javascript_libs = 'jasmine'
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
-function! MyTmpFunc()
-  call append('.', 'test string')
-endfunction
 augroup MyAutoCmd
-  autocmd Filetype markdown inoremap <silent> <C-j> <Space><Space><ESC>:call MarkdownNewLine(1)<CR>A
-  autocmd Filetype markdown inoremap <silent> <C-l> <ESC>:call MarkdownNewLine(2)<CR>A
+  autocmd Filetype markdown imap <C-j> <Plug>(mdnl_linebreak)
+  autocmd Filetype markdown imap <C-l> <Plug>(mdnl_new_listitem)
 augroup END
 " }}}
 
@@ -489,4 +406,8 @@ augroup END
 
 " others {{{
 let g:zenspace#default_mode = 'on'
+
+call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(Describe\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(Context\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(It\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
 " }}}
