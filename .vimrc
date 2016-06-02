@@ -203,6 +203,8 @@ NeoBundleLazy 'jalvesaq/Nvim-R', {
       \ 'on_ft': ['r']
       \}
 NeoBundle 'thinca/vim-themis'
+NeoBundle 'syngan/vim-vimlint', {
+      \ 'depends' : 'ynkdir/vim-vimlparser'}
 NeoBundle 'thinca/vim-zenspace'
 NeoBundle 'gk0909c/md-nl'
 
@@ -407,7 +409,5 @@ augroup END
 " others {{{
 let g:zenspace#default_mode = 'on'
 
-call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(Describe\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
-call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(Context\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
-call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%(It\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
 " }}}
