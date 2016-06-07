@@ -156,6 +156,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundleLazy 'cohama/agit.vim', {
@@ -228,6 +229,7 @@ nnoremap [unite]<Space>  :<C-u>Unite<Space>
 nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
 nnoremap <silent> [unite]m   :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]o   :<C-u>Unite outline<CR>
 " }}}
 
 " VimFiler, VimShell {{{
