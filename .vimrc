@@ -207,6 +207,10 @@ NeoBundle 'thinca/vim-themis'
 NeoBundle 'syngan/vim-vimlint', {
       \ 'depends' : 'ynkdir/vim-vimlparser'}
 NeoBundle 'thinca/vim-zenspace'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Quramy/tsuquyomi'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'vim-scripts/nginx.vim'
 NeoBundle 'gk0909c/md-nl'
 
 call neobundle#end()
@@ -281,6 +285,7 @@ endif
 let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
+let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 " let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
 
@@ -302,7 +307,17 @@ let g:neosnippet#snippets_directory=[]
 " }}}
 
 " syntastic {{{
-let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
+" let g:syntastic_html_tidy_quiet_messages = {
+"       \ 'regex': 'my-app'
+"       \ }
+" let g:syntastic_html_tidy_ignore_errors = [
+"      \ '<meta> proprietary attribute',
+"      \ 'proprietary attribute "ng-',
+"      \ ]
+let g:syntastic_html_checkers = []
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 0
 "}}}
@@ -411,5 +426,13 @@ augroup END
 " others {{{
 let g:zenspace#default_mode = 'on'
 
-call lexima#add_rule({'filetype': ['vimspec'], 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#', 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+call lexima#add_rule({
+      \ 'filetype': ['vimspec'],
+      \ 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#',
+      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+
+augroup MyAutoCmd
+  autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
+augroup END
+
 " }}}

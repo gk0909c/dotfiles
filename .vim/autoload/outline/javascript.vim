@@ -4,12 +4,13 @@ endfunction
 
 let s:pat_node_module = '\%(\s*module\.exports\s*=\s*function\)'
 let s:pat_assign_func = '\%(\s*var\s\w\+\s*=\s*function\)'
+let s:pat_func = '\%(\%((function\|\s*function\s\+\w\+\)\)'
 let s:pat_gulp_task = '\%(\s*gulp.task(\)'
 let s:pat_jasmine = '\%(\s*\%([Dd]escribe\|[Ii]t\)(.\+,\s*function\)'
 
 
 let s:outline_info = {
-      \ 'heading': '^\%(' . s:pat_node_module . '\|' . s:pat_assign_func . '\|' . 
+      \ 'heading': '^\%(' . s:pat_node_module . '\|' . s:pat_assign_func . '\|' . s:pat_func . '\|' . 
       \                     s:pat_gulp_task . '\|' . s:pat_jasmine . '\)',
       \ 'highlight_rules': [
       \   { 'name' : 'description', 'pattern'  : '/''.\+''/', 'highlight': unite#sources#outline#get_highlight('type') }
