@@ -192,7 +192,7 @@ NeoBundleLazy 'kannokanno/previm', {
       \ 'on_cmd': [ 'PrevimOpen' ]
       \ }
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'ervandew/eclim'
+"NeoBundle 'ervandew/eclim'
 NeoBundleLazy 'davidhalter/jedi-vim', {
       \ 'build': {'others': 'git submodule update --init'},
       \ 'on_ft': [ 'python' ]
@@ -225,6 +225,7 @@ endif
 " }}}
 
 " unite.vim setting {{{
+let g:vimfiler_as_default_explorer = 1
 call unite#custom#default_action("source/bookmark/directory", "cd")
 
 nnoremap [unite] <Nop>
@@ -278,6 +279,11 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 let g:neocomplete#enable_auto_close_preview = 1
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+      \ 'default': '',
+      \ 'java': '~/.vim/dict/java.dict'
+      \ }
 
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
