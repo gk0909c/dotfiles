@@ -212,6 +212,7 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/nginx.vim'
+NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'gk0909c/md-nl'
 
 call neobundle#end()
@@ -310,7 +311,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-let g:neosnippet#snippets_directory=[]
+let g:neosnippet#snippets_directory=['~/.vim/snippets']
 " }}}
 
 " syntastic {{{

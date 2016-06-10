@@ -10,6 +10,7 @@ mklink %HOMEPATH%"\_gvimrc" %HOMEPATH%"\dotfiles\.gvimrc"
 
 mklink /D %HOMEPATH%"\vimfiles\autoload" %HOMEPATH%"\dotfiles\.vim\autoload"
 mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\.vim\dict"
+mklink /D %HOMEPATH%"\.vim\snippets" %HOMEPATH%"\dotfiles\.vim\snippets"
 
 pause
 exit 0

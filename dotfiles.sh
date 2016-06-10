@@ -10,3 +10,4 @@ ln -sf ~/dotfiles/.gvimrc ~/.gvimrc
 
 ln -sf ~/dotfiles/.vim/autoload/ ~/.vim/
 ln -sf ~/dotfiles/.vim/dict/ ~/.vim/
+ln -sf ~/dotfiles/.vim/snippets/ ~/.vim/
