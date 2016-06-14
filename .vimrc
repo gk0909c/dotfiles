@@ -246,6 +246,9 @@ nmap <Space>u [unite]
 nnoremap [unite]<Space>  :<C-u>Unite<Space>
 nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
+nnoremap <silent> [unite]r   :<C-u>Unite file_rec<CR>
+nnoremap <silent> [unite]g   :<C-u>Unite file_rec/git<CR>
+nnoremap <silent> [unite]a   :<C-u>Unite file_rec/async<CR>
 nnoremap <silent> [unite]m   :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]o   :<C-u>Unite outline<CR>
 " }}}
@@ -408,9 +411,14 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 augroup MyAutoCmd
-  autocmd Filetype markdown imap <C-j> <Plug>(mdnl_linebreak)
-  autocmd Filetype markdown imap <C-l> <Plug>(mdnl_new_listitem)
+  autocmd Filetype markdown imap <buffer> <C-j> <Plug>(mdnl_linebreak)
+  autocmd Filetype markdown imap <buffer> <C-l> <Plug>(mdnl_new_listitem)
 augroup END
+
+call lexima#add_rule({
+      \ 'filetype': ['markdown'],
+      \ 'at': '^\s*\%(\%([+*-]\)\|\%([0-9]\+\.\)\)\s\%#',
+      \ 'char': '[', 'input': '[<space>]<space>' })
 " }}}
 
 " eclim setting {{{
@@ -431,9 +439,9 @@ let g:jedi#auto_vim_configuration = 0
 " use tmux2.0, need tmux.config(see Nvim-R doc)
 " 1. exec tmax, 2. exec vim, 3. start R (\rf)
 " if in nvim, tmux is no need.(use nvim term)
-let R_in_buffer = 0
-let R_applescript = 0
-let R_tmux_split = 1
+let g:R_in_buffer = 0
+let g:R_applescript = 0
+let g:R_tmux_split = 1
 " let R_vsplit = 1
 augroup MyAutoCmd
   " need to consider these mappings...
