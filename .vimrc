@@ -45,13 +45,24 @@ set smartindent
 set autoindent
 
 augroup MyAutoCmd
-  autocmd BufEnter * setlocal formatoptions-=r
-  autocmd BufEnter * setlocal formatoptions-=o
-  
   autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType apexcode setlocal shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
+" }}}
+
+" comment setting {{{
+augroup MyAutoCmd
+  autocmd BufEnter *
+        \ setlocal formatoptions-=r |
+        \ setlocal formatoptions-=o
+
+  autocmd BufEnter *.java,*.groovy,*.gradle,*.js,*.ts
+        \ setlocal formatoptions+=r |
+        \ setlocal formatoptions+=o |
+        \ setlocal comments=s1:/*,mb:*,ex:*/
+augroup END
+
 " }}}
 
 " paste toggle {{{
