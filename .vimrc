@@ -411,8 +411,12 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 augroup MyAutoCmd
-  autocmd Filetype markdown imap <buffer> <C-j> <Plug>(mdnl_linebreak)
+  autocmd Filetype markdown imap <buffer> <C-o> <Plug>(mdnl_linebreak)
+  autocmd Filetype markdown imap <buffer> <C-i> <Plug>(mdnl_split_as_paragraph)
+  autocmd Filetype markdown nmap <buffer> <C-i> <Plug>(mdnl_split_as_paragraph)
   autocmd Filetype markdown imap <buffer> <C-l> <Plug>(mdnl_new_listitem)
+  autocmd Filetype markdown imap <buffer> <C-j> <Plug>(mdnl_split_as_list)
+  autocmd Filetype markdown nmap <buffer> <C-j> <Plug>(mdnl_split_as_list)
 augroup END
 
 call lexima#add_rule({
