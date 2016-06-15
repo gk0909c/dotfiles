@@ -164,6 +164,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \ }
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'ujihisa/neco-look'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
@@ -296,11 +297,22 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 let g:neocomplete#enable_auto_close_preview = 1
 
+" dictionary
+let s:typescript_dictionaries = [
+      \ '~/.vim/dict/typescript.dict',
+      \ '~/.vim/dict/typescript.angular.dict'
+      \ ]
 let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default': '',
-      \ 'java': '~/.vim/dict/java.dict'
+      \ '_': '~/.vim/dict/common.dict',
+      \ 'java': '~/.vim/dict/java.dict',
+      \ 'typescript': join(s:typescript_dictionaries, ',')
       \ }
 
+let s:keyword_patterns = {}
+let s:keyword_patterns.typescript = '\h\w*\%(-\w*\)*'
+call neocomplete#custom#source('dictionary', 'keyword_patterns', s:keyword_patterns)
+
+" omni func
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
