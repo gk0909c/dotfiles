@@ -29,6 +29,10 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 set foldmethod=marker
 set cursorline
 set backspace=indent,eol,start
+
+augroup MyAutoCmd
+  autocmd FileType json setlocal conceallevel=0
+augroup END
 " }}}
 
 " cursor {{{
@@ -225,6 +229,7 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/nginx.vim'
 NeoBundle 'AndrewRadev/switch.vim'
+NeoBundle 'gcorne/vim-sass-lint'
 NeoBundle 'gk0909c/md-nl'
 
 call neobundle#end()
@@ -298,18 +303,21 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#enable_auto_close_preview = 1
 
 " dictionary
+let s:dict_dir = '~/.vim/dict/'
 let s:typescript_dictionaries = [
-      \ '~/.vim/dict/typescript.dict',
-      \ '~/.vim/dict/typescript.angular.dict'
+      \ s:dict_dir . 'typescript.dict',
+      \ s:dict_dir . 'typescript.angular.dict'
       \ ]
 let g:neocomplete#sources#dictionary#dictionaries = {
-      \ '_': '~/.vim/dict/common.dict',
-      \ 'java': '~/.vim/dict/java.dict',
+      \ '_': s:dict_dir . 'common.dict',
+      \ 'html': s:dict_dir . 'bootstrap.dict',
+      \ 'java': s:dict_dir . 'java.dict',
       \ 'typescript': join(s:typescript_dictionaries, ',')
       \ }
 
 let s:keyword_patterns = {}
 let s:keyword_patterns.typescript = '\h\w*\%(-\w*\)*'
+let s:keyword_patterns.html = '\h\w*\%(-\w*\)*'
 call neocomplete#custom#source('dictionary', 'keyword_patterns', s:keyword_patterns)
 
 " omni func
@@ -344,6 +352,7 @@ let g:neosnippet#snippets_directory=['~/.vim/snippets']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
+let g:syntastic_scss_checkers = ['sass_lint']
 " let g:syntastic_html_tidy_quiet_messages = {
 "       \ 'regex': 'my-app'
 "       \ }
