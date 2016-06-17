@@ -52,6 +52,7 @@ augroup MyAutoCmd
   autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType apexcode setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
 " }}}
 
@@ -61,7 +62,7 @@ augroup MyAutoCmd
         \ setlocal formatoptions-=r |
         \ setlocal formatoptions-=o
 
-  autocmd BufEnter *.java,*.groovy,*.gradle,*.js,*.ts
+  autocmd BufEnter *.java,*.groovy,*.gradle,*.js,*.ts,*.php
         \ setlocal formatoptions+=r |
         \ setlocal formatoptions+=o |
         \ setlocal comments=s1:/*,mb:*,ex:*/
@@ -312,6 +313,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
       \ '_': s:dict_dir . 'common.dict',
       \ 'html': s:dict_dir . 'bootstrap.dict',
       \ 'java': s:dict_dir . 'java.dict',
+      \ 'php': s:dict_dir . 'php.dict',
       \ 'typescript': join(s:typescript_dictionaries, ',')
       \ }
 
@@ -353,6 +355,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
 let g:syntastic_scss_checkers = ['sass_lint']
+let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
+
+let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,naming,unusedcode'
 " let g:syntastic_html_tidy_quiet_messages = {
 "       \ 'regex': 'my-app'
 "       \ }
@@ -491,6 +496,11 @@ call lexima#add_rule({
       \ 'filetype': ['vimspec'],
       \ 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#',
       \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+
+call lexima#add_rule({
+      \ 'filetype': ['php'],
+      \ 'at': '^\s*<?php\%#',
+      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>?>'})
 
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
