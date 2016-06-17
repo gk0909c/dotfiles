@@ -11,4 +11,10 @@ selector
 template
 templateUrl
 styleUrls
+providers
+viewProviders
+directives
+Component
+Injectable
+OnInit
 
