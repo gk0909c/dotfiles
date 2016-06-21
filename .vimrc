@@ -96,6 +96,14 @@ function! s:Mkdir(dir)
   endif
 endfunction
 
+" Disp PATH env list
+function! s:DispPathList() abort
+  let splitter = IsWindows() ? ';' : ':'
+  execute ":tabnew"
+  let path_list = split($PATH, splitter)
+  call setline(1, path_list)
+endfunction
+
 " generate javascript method comment 
 function! s:GenDocJs()
   let l:line = line('.')
@@ -137,6 +145,7 @@ endfunction
 
 " my commands and keymap {{{
 command! GenDocJs :call s:GenDocJs()
+command! DispPathList :call s:DispPathList()
 
 augroup MyAutoCmd
   autocmd Filetype xml inoremap <buffer> </ </<C-x><C-o>
@@ -505,5 +514,4 @@ call lexima#add_rule({
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
 augroup END
-
 " }}}
