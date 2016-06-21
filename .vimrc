@@ -98,10 +98,12 @@ endfunction
 
 " Disp PATH env list
 function! s:DispPathList() abort
+  let previewfile = tempname()
   let splitter = IsWindows() ? ';' : ':'
-  execute ":tabnew"
   let path_list = split($PATH, splitter)
-  call setline(1, path_list)
+  call writefile(path_list, previewfile)
+
+  execute ":pedit " . previewfile
 endfunction
 
 " generate javascript method comment 
