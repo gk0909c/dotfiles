@@ -2,3 +2,26 @@ snippet import
 abbr import
 options head
   import ${1:what} from '${2:module}';${0}
+
+snippet describe
+abbr    jasmine-describe
+alias   jasmine-describe
+options head
+  describe('${1}', () => {
+    ${0}
+  });
+
+snippet jasmine-it
+abbr    jasmine-it
+options head
+  it('${1}', () => {
+    ${0}
+  });
+
+snippet beforeEach
+abbr    jasmine-beforeEach
+alias   jasmine-beforeEach
+options head
+  beforeEach(() => {
+    ${0}
+  });

@@ -304,6 +304,9 @@ nnoremap [tab]e :<C-u>tabnew<Space>%<CR>
 nnoremap [tab]n :<C-u>tabnext<CR>
 nnoremap [tab]p :<C-u>tabprevious<CR>
 nnoremap [tab]c :<C-u>tabclose<CR>
+nnoremap [tab]f :<C-u>tabfirst<CR>
+nnoremap [tab]l :<C-u>tablast<CR>
+nnoremap [tab]o :<C-u>tabonly<CR>
 " }}}
 
 " NeoComplete {{{
