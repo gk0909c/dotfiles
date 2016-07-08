@@ -26,6 +26,7 @@ set ruler
 set laststatus=2 
 set cmdheight=2
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+vnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 set foldmethod=marker
 set cursorline
 set backspace=indent,eol,start
@@ -242,6 +243,7 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/nginx.vim'
 NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'gcorne/vim-sass-lint'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'gk0909c/md-nl'
 
 call neobundle#end()
@@ -253,6 +255,11 @@ NeoBundleCheck
 if !has('gui_running')
   call LoadMyColorshcheme()
 endif
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=darkgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=lightgrey
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
 " }}}
 
 " unite.vim setting {{{
