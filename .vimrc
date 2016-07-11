@@ -313,7 +313,14 @@ nnoremap [tab]p :<C-u>tabprevious<CR>
 nnoremap [tab]c :<C-u>tabclose<CR>
 nnoremap [tab]f :<C-u>tabfirst<CR>
 nnoremap [tab]l :<C-u>tablast<CR>
-nnoremap [tab]o :<C-u>tabonly<CR>
+
+function! s:Tabonly()
+  let choice = confirm('close all tab?(except selecting tab)', "y yes\nn no")
+  if choice == 1
+    execute ':tabonly'
+  endif
+endfunction
+nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
 " }}}
 
 " NeoComplete {{{
