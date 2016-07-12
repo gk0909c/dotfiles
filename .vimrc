@@ -301,6 +301,7 @@ nnoremap [git]ps :<C-u>Gpush<Space>
 
 nnoremap [git]v :<C-u>Agit<CR>
 nnoremap [git]l :<C-u>!git log -20 --no-merges --date=short --pretty='format:\%C(yellow)\%h \%C(green)\%cd \%C(blue)\%an\%C(red)\%d \%C(reset)\%s'<CR>
+nnoremap [git]r :<C-u>!git rebase -i 
 " }}}
 
 " tab {{{
