@@ -509,6 +509,15 @@ augroup MyAutoCmd
 augroup END
 " }}}
 
+" tcomment {{{
+if !exists('g:tcomment_types')
+	let g:tcomment_types = {}
+endif
+let g:tcomment_types['apexcode'] = '// %s'
+let g:tcomment_types['visualforce'] = '<!-- %s -->'
+
+" }}}
+
 " others {{{
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config._ = {
