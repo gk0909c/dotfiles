@@ -18,6 +18,17 @@ options head
     ${0}
   });
 
+snippet jasmine-it-inject-fackeAsync
+abbr    jasmine-it-inject-fackeAsync
+options head
+  it('${1}', inject(
+    [${2}], fakeAsync(
+      (${3}) => {
+        ${0}
+      }
+    )
+  ));
+
 snippet beforeEach
 abbr    jasmine-beforeEach
 alias   jasmine-beforeEach
