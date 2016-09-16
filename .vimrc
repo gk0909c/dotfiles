@@ -9,6 +9,7 @@ set fileformats=unix,dos,mac
 augroup MyAutoCmd
   autocmd!
   autocmd BufNewFile,BufRead *.gradle set filetype=groovy
+  autocmd BufNewFile,BufRead *.js.erb set filetype=javascript
 augroup END
 " }}}
 
@@ -200,17 +201,17 @@ NeoBundleLazy 'marijnh/tern_for_vim', {
       \ 'on_ft': [ 'javascript' ],
       \ }
 NeoBundle 'scrooloose/syntastic', {
-      \ 'build': {'others': 'npm install -g eslint'}
+      \ 'build': {'others': 'npm install -g eslint eslint-plugin-react'}
       \ }
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundleLazy 'neowit/vim-force.com', {
       \ 'on_ft': [ 'apexcode', 'visualforce' ],
       \ 'on_cmd' : 'ApexInitProject'
       \}
-NeoBundleLazy 'osyo-manga/vim-monster', {
-      \ 'build': {'others': 'gem install rcodetools'},
-      \ 'on_ft': [ 'ruby' ]
-      \}
+" NeoBundleLazy 'osyo-manga/vim-monster', {
+"       \ 'build': {'others': 'gem install rcodetools'},
+"       \ 'on_ft': [ 'ruby' ]
+"       \}
 NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
       \ 'on_ft': [ 'javascript' ]
       \ }
@@ -245,6 +246,8 @@ NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'gcorne/vim-sass-lint'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'gk0909c/md-nl'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-bundler'
 
 call neobundle#end()
 filetype plugin indent on
@@ -360,6 +363,7 @@ let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
 
 " }}}
@@ -451,10 +455,15 @@ endif
 " }}}
 
 " vim-monster setting {{{
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-let g:neocomplete#sources#omni#input_patterns = {
-      \ 'ruby': '[^. *\t]\.\w*\|\h\w*::'
-      \}
+" let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" let g:neocomplete#sources#omni#input_patterns = {
+"       \ 'ruby': '[^. *\t]\.\w*\|\h\w*::'
+"       \}
+" }}}
+" rubycomplete setting {{{
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_rails = 1
+let g:rubycomplete_classes_in_global = 1
 " }}}
 
 " javascript-libraries-syntax setting {{{
