@@ -327,6 +327,37 @@ endfunction
 nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
 " }}}
 
+" Angular2 setting (via angular-cli) {{{
+if executable('ng')
+  function! CompletionNgGenerate(ArgLead, CmdLine, CursorPos)
+    let cmd = split(a:CmdLine)
+    let len_cmd = len(l:cmd)
+
+    if (len_cmd == 1 && a:ArgLead == '') || (len_cmd == 2 && a:ArgLead != '')
+      let filter_cmd = printf('v:val =~ "^%s"', a:ArgLead)
+      return filter(['component', 'directive', 'pipe', 'service', 'class', 'interface', 'enum'], filter_cmd)
+    else
+      return []
+    endif
+  endfunction
+  command! -nargs=+ -complete=customlist,CompletionNgGenerate NgGenerate :execute '!ng g ' . "<args>"
+endif
+
+command! NgOpenController :execute 'new ' . expand("%:r") . '.ts'
+command! NgVOpenController :execute 'vnew ' . expand("%:r") . '.ts'
+command! NgOpenView :execute 'new ' . expand("%:r") . '.html'
+command! NgVOpenView :execute 'vnew ' . expand("%:r") . '.html'
+command! NgOpenStyle :execute 'new ' . expand("%:r") . '.scss'
+command! NgVOpenStyle :execute 'vnew ' . expand("%:r") . '.scss'
+
+nnoremap [angluar-cli] <Nop>
+nmap <Space>a [angular-cli]
+
+nnoremap [angular-cli]c :<C-u>NgVOpenController<CR>
+nnoremap [angular-cli]v :<C-u>NgVOpenView<CR>
+nnoremap [angular-cli]s :<C-u>NgVOpenStyle<CR>
+" }}}
+
 " NeoComplete {{{
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
