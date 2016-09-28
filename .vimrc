@@ -327,6 +327,12 @@ endfunction
 nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
 " }}}
 
+" npm setting {{{
+  command! -nargs=1 NpmInstallSave :execute '!npm install --save ' . "<args>"
+  command! -nargs=1 NpmInstallSaveDev :execute '!npm install --save-dev ' . "<args>"
+
+" }}}
+
 " Angular2 setting (via angular-cli) {{{
 if executable('ng')
   function! CompletionNgGenerate(ArgLead, CmdLine, CursorPos)
