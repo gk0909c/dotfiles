@@ -7,6 +7,7 @@ IF NOT EXIST %HOMEPATH%"\.vim\bundle" (
 
 mklink %HOMEPATH%"\_vimrc" %HOMEPATH%"\dotfiles\.vimrc"
 mklink %HOMEPATH%"\_gvimrc" %HOMEPATH%"\dotfiles\.gvimrc"
+mklink %HOMEPATH%"\.vrapperrc" %HOMEPATH%"\dotfiles\.vrapperrc"
 
 mklink /D %HOMEPATH%"\vimfiles\autoload" %HOMEPATH%"\dotfiles\.vim\autoload"
 mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\.vim\dict"
