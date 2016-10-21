@@ -249,6 +249,8 @@ NeoBundle 'gk0909c/md-nl'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
 NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 
 call neobundle#end()
 filetype plugin indent on
