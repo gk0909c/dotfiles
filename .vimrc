@@ -248,6 +248,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'gk0909c/md-nl'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-speeddating'
 
 call neobundle#end()
 filetype plugin indent on
