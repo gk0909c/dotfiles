@@ -330,6 +330,13 @@ endfunction
 nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
 " }}}
 
+" edit etc {{{
+nnoremap [edit] <Nop>
+nmap e [edit]
+nnoremap <expr> [edit]c ':<C-u>e ' . expand("%:h") . '/'
+
+" }}}
+
 " npm setting {{{
   command! -nargs=1 NpmInstallSave :execute '!npm install --save ' . "<args>"
   command! -nargs=1 NpmInstallSaveDev :execute '!npm install --save-dev ' . "<args>"
