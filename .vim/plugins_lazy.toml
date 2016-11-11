@@ -1,0 +1,51 @@
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+on_cmd = 'Agit'
+
+[[plugins]]
+repo = 'marijnh/tern_for_vim'
+build = 'npm install'
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+build = 'npm install -g eslint eslint-plugin-react'
+
+[[plugins]]
+repo = 'neowit/vim-force.com'
+on_ft = ['apexcode', 'visualforce']
+on_cmd = 'ApexInitProject'
+
+[[plugins]]
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = ['javascript']
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['markdown']
+
+[[plugins]]
+repo = 'kannokanno/previm'
+on_cmd = [ 'PrevimOpen' ]
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+build = 'git submodule update --init'
+on_ft = [ 'python' ]
+
+[[plugins]]
+repo = 'hynek/vim-python-pep8-indent'
+on_ft = [ 'python' ]
+
+[[plugins]]
+repo = 'jalvesaq/Nvim-R'
+on_ft = [ 'r' ]
+
+[[plugins]]
+repo = 'syngan/vim-vimlint'
+depends = ['ynkdir/vim-vimlparser']
+

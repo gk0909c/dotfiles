@@ -136,7 +136,7 @@ endfunction
 function! LoadMyColorshcheme()
   syntax on
   set background=dark
-  if neobundle#is_sourced('vim-hybrid')
+  if dein#is_sourced('vim-hybrid')
     colorscheme hybrid
   endif
   highlight LineNr ctermfg=245
@@ -158,103 +158,35 @@ augroup MyAutoCmd
 augroup END
 " }}}
 
-" NeoBundle {{{
-if 0 | endif
- 
+"dein settings {{{
 if &compatible
-  set nocompatible
+  set nocompatible               " Be iMproved
 endif
 
-set runtimepath^=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Required:
+call dein#begin('~/.vim/dein')
 
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make',
-      \     'linux' : 'make -f make_unix.mak',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'ujihisa/neco-look'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundleLazy 'cohama/agit.vim', {
-      \ 'on_cmd' : 'Agit'
-      \}
-NeoBundle 'tpope/vim-surround'
-"NeoBundle 'kana/vim-smartinput'
-NeoBundle 'cohama/lexima.vim'
-NeoBundleLazy 'marijnh/tern_for_vim', {
-      \ 'build': {'others': 'npm install'},
-      \ 'on_ft': [ 'javascript' ],
-      \ }
-NeoBundle 'scrooloose/syntastic', {
-      \ 'build': {'others': 'npm install -g eslint eslint-plugin-react'}
-      \ }
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundleLazy 'neowit/vim-force.com', {
-      \ 'on_ft': [ 'apexcode', 'visualforce' ],
-      \ 'on_cmd' : 'ApexInitProject'
-      \}
-" NeoBundleLazy 'osyo-manga/vim-monster', {
-"       \ 'build': {'others': 'gem install rcodetools'},
-"       \ 'on_ft': [ 'ruby' ]
-"       \}
-NeoBundleLazy 'othree/javascript-libraries-syntax.vim', {
-      \ 'on_ft': [ 'javascript' ]
-      \ }
-NeoBundleLazy 'plasticboy/vim-markdown', {
-      \ 'on_ft': [ 'markdown' ]
-      \}
-NeoBundle 'Konfekt/FastFold'
-NeoBundleLazy 'kannokanno/previm', {
-      \ 'on_cmd': [ 'PrevimOpen' ]
-      \ }
-NeoBundle 'tyru/open-browser.vim'
-"NeoBundle 'ervandew/eclim'
-NeoBundleLazy 'davidhalter/jedi-vim', {
-      \ 'build': {'others': 'git submodule update --init'},
-      \ 'on_ft': [ 'python' ]
-      \ }
-NeoBundleLazy 'hynek/vim-python-pep8-indent', {
-      \ 'on_ft': ['python']
-      \}
-NeoBundleLazy 'jalvesaq/Nvim-R', {
-      \ 'on_ft': ['r']
-      \}
-NeoBundle 'thinca/vim-themis'
-NeoBundle 'syngan/vim-vimlint', {
-      \ 'depends' : 'ynkdir/vim-vimlparser'}
-NeoBundle 'thinca/vim-zenspace'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'vim-scripts/nginx.vim'
-NeoBundle 'AndrewRadev/switch.vim'
-NeoBundle 'gcorne/vim-sass-lint'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'gk0909c/md-nl'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-bundler'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
-call neobundle#end()
+call dein#load_toml("~/.vim/plugins.toml", {'lazy': 0}) 
+call dein#load_toml("~/.vim/plugins_lazy.toml", {'lazy': 1}) 
+
+" Required:
+call dein#end()
+
+" Required:
 filetype plugin indent on
-NeoBundleCheck
+syntax enable
+
+" If you want to install not installed plugins on startup.
+" if dein#check_install()
+"  call dein#install()
+"endif
 " }}}
 
 " color schema {{{
@@ -270,7 +202,7 @@ let g:indent_guides_guide_size=1
 
 " unite.vim setting {{{
 let g:vimfiler_as_default_explorer = 1
-call unite#custom#default_action("source/bookmark/directory", "cd")
+call denite#custom#source("source/bookmark/directory", "-default-action", "cd")
 
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
@@ -333,7 +265,9 @@ nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
 " edit etc {{{
 nnoremap [edit] <Nop>
 nmap e [edit]
-nnoremap <expr> [edit]c ':<C-u>e ' . expand("%:h") . '/'
+nnoremap <expr> [edit]e ':<C-u>e ' . expand("%:h") . '/'
+nnoremap <expr> [edit]n ':<C-u>new ' . expand("%:h") . '/'
+nnoremap <expr> [edit]vn ':<C-u>vnew ' . expand("%:h") . '/'
 
 " }}}
 
@@ -451,8 +385,8 @@ let g:syntastic_check_on_wq = 0
 "}}}
 
 " vim-force.com setting {{{
-if neobundle#tap('vim-force.com')
-  function! neobundle#tapped.hooks.on_source(bundle)
+if dein#tap('vim-force.com')
+  function! s:init_vim_force()
     let l:base_dir = expand('~/.vim-force/')
     let l:properties_dir = l:base_dir . 'properties'
     let l:temp_dir = l:base_dir . 'temp'
@@ -484,7 +418,7 @@ if neobundle#tap('vim-force.com')
       let s:proxy_info = split($http_proxy, ':')
       let g:apex_tooling_force_dot_com_extra_params="--http.proxyHost=" . s:proxy_info[1][2:-1] . " --http.proxyPort=" . s:proxy_info[2]
     endif
-    call add(g:neosnippet#snippets_directory, neobundle#get('vim-force.com').installed_path . '/snippets')
+    call add(g:neosnippet#snippets_directory, dein#get('vim-force.com').path . '/snippets')
 
     if s:is_windows
       let g:apex_binary_tee = "C:\\Program Files\\Git\\usr\\bin\\tee.exe"
@@ -492,11 +426,11 @@ if neobundle#tap('vim-force.com')
     endif
   endfunction
 
-  call neobundle#untap()
+  call dein#set_hook('vim-force.com', 'hook_source', function('s:init_vim_force'))
 endif
 " filetypes related sfdc are owned in vim-force plugin
-if neobundle#is_installed('vim-force.com')
-  let s:vim_force_installed_path = neobundle#get('vim-force.com').installed_path . '/ftdetect/vim-force.com.vim'
+if dein#check_install(['vim-force.com']) == 0
+  let s:vim_force_installed_path = dein#get('vim-force.com').path . '/ftdetect/vim-force.com.vim'
   execute 'source ' . s:vim_force_installed_path
 endif
 " }}}
