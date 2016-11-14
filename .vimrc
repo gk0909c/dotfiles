@@ -202,7 +202,7 @@ let g:indent_guides_guide_size=1
 
 " unite.vim setting {{{
 let g:vimfiler_as_default_explorer = 1
-call denite#custom#source("source/bookmark/directory", "-default-action", "cd")
+call unite#custom#default_action("source/bookmark/directory", "cd")
 
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]

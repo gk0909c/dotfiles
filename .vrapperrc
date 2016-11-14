@@ -2,3 +2,5 @@ noremap tn :tabnext<Enter>
 noremap tp :tabprevious<Enter>
 noremap tf :tabrewind<Enter>
 noremap tl :tablast<Enter>
+
+set imd
