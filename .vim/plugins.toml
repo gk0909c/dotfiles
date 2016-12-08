@@ -93,3 +93,6 @@ repo = 'mxw/vim-jsx'
 
 [[plugins]]
 repo = 'ynkdir/vim-vimlparser'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'

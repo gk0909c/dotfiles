@@ -384,6 +384,11 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 0
 "}}}
 
+" easy-align setting {{{
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" }}}
+
 " vim-force.com setting {{{
 if dein#tap('vim-force.com')
   function! s:init_vim_force()
