@@ -11,6 +11,8 @@ ln -sf ~/dotfiles/.gvimrc ~/.gvimrc
 ln -sf ~/dotfiles/.vim/plugins.toml ~/.vim/
 ln -sf ~/dotfiles/.vim/plugins_lazy.toml ~/.vim/
 
+ln -sf ~/dotfiles/.vim/vimpreview.css ~/.vim/
+
 ln -sf ~/dotfiles/.vim/autoload/ ~/.vim/
 ln -sf ~/dotfiles/.vim/dict/ ~/.vim/
 ln -sf ~/dotfiles/.vim/snippets/ ~/.vim/

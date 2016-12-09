@@ -539,4 +539,6 @@ augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
   autocmd BufWritePre *.ts,*.js,*.java,*.rb,*.py,*.php :%s/\s\+$//ge
 augroup END
+
+let g:previm_custom_css_path = expand('~/.vim/vimpreview.css')
 " }}}
