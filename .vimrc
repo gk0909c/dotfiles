@@ -397,8 +397,8 @@ if dein#tap('vim-force.com')
     let l:temp_dir = l:base_dir . 'temp'
     let l:backup_dir = l:base_dir . 'backup'
   
-    let l:jar_name = 'tooling-force.com-0.3.6.0.jar'
-    let l:jar_url = 'https://github.com/neowit/tooling-force.com/releases/download/v0.3.6.0/' . l:jar_name
+    let l:jar_name = 'tooling-force.com-0.3.6.6.jar'
+    let l:jar_url = 'https://github.com/neowit/tooling-force.com/releases/download/v0.3.6.6/' . l:jar_name
   
     call s:Mkdir(l:base_dir)
     call s:Mkdir(l:properties_dir)
@@ -410,12 +410,12 @@ if dein#tap('vim-force.com')
       call system('wget ' . l:jar_url . ' && mv ' . l:jar_name . ' ' . l:base_dir . '/')
     endif
   
-    let g:apex_backup_folder = l:properties_dir
+    let g:apex_backup_folder = l:backup_dir
     let g:apex_temp_folder = l:temp_dir
-    let g:apex_properties_folder = l:backup_dir
+    let g:apex_properties_folder = l:properties_dir
     let g:apex_tooling_force_dot_com_path = l:base_dir . '/' . l:jar_name
   
-    let g:apex_API_version="36.0"
+    let g:apex_API_version="38.0"
     let g:apex_server=1
     let g:apex_server_timeoutSec=60*30
   
