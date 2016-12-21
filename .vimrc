@@ -156,6 +156,13 @@ augroup MyAutoCmd
   autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
   autocmd Filetype visualforce inoremap <buffer> </ </<C-x><C-o>
 augroup END
+
+" yank text objects
+nnoremap yw viwy
+nnoremap y" vi"y
+nnoremap y' vi'y
+nnoremap y( vi(y
+nnoremap yt vity
 " }}}
 
 "dein settings {{{
