@@ -1,8 +1,4 @@
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-
-[[plugins]]
 repo = 'cohama/agit.vim'
 on_cmd = 'Agit'
 
@@ -10,10 +6,6 @@ on_cmd = 'Agit'
 repo = 'marijnh/tern_for_vim'
 build = 'npm install'
 on_ft = ['javascript']
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
-build = 'npm install -g eslint eslint-plugin-react'
 
 [[plugins]]
 repo = 'neowit/vim-force.com'
@@ -46,6 +38,6 @@ repo = 'jalvesaq/Nvim-R'
 on_ft = [ 'r' ]
 
 [[plugins]]
-repo = 'syngan/vim-vimlint'
-depends = ['ynkdir/vim-vimlparser']
+repo = 'Quramy/tsuquyomi'
+on_ft = [ 'typescript' ]
 

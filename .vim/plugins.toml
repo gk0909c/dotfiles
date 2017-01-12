@@ -56,9 +56,6 @@ repo = 'thinca/vim-zenspace'
 repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
-repo = 'Quramy/tsuquyomi'
-
-[[plugins]]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
@@ -95,4 +92,17 @@ repo = 'mxw/vim-jsx'
 repo = 'ynkdir/vim-vimlparser'
 
 [[plugins]]
+repo = 'syngan/vim-vimlint'
+depends = ['ynkdir/vim-vimlparser']
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+build = 'npm install -g eslint eslint-plugin-react'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
