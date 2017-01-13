@@ -292,7 +292,7 @@ if executable('ng')
 
     if (len_cmd == 1 && a:ArgLead == '') || (len_cmd == 2 && a:ArgLead != '')
       let filter_cmd = printf('v:val =~ "^%s"', a:ArgLead)
-      return filter(['component', 'directive', 'pipe', 'service', 'class', 'interface', 'enum'], filter_cmd)
+      return filter(['component', 'directive', 'pipe', 'service', 'class', 'interface', 'enum', 'module'], filter_cmd)
     else
       return []
     endif
@@ -300,12 +300,18 @@ if executable('ng')
   command! -nargs=+ -complete=customlist,CompletionNgGenerate NgGenerate :execute '!ng g ' . "<args>"
 endif
 
-command! NgOpenController :execute 'new ' . expand("%:r") . '.ts'
-command! NgVOpenController :execute 'vnew ' . expand("%:r") . '.ts'
-command! NgOpenView :execute 'new ' . expand("%:r") . '.html'
-command! NgVOpenView :execute 'vnew ' . expand("%:r") . '.html'
-command! NgOpenStyle :execute 'new ' . expand("%:r") . '.scss'
-command! NgVOpenStyle :execute 'vnew ' . expand("%:r") . '.scss'
+function! s:GetFilePathForNg()
+  return join(split(expand("%:r"), '\.')[0:1], '.')
+endfunction
+
+command! NgOpenController :execute 'new ' . s:GetFilePathForNg() . '.ts'
+command! NgVOpenController :execute 'vnew ' . s:GetFilePathForNg() . '.ts'
+command! NgOpenView :execute 'new ' . s:GetFilePathForNg() . '.html'
+command! NgVOpenView :execute 'vnew ' . s:GetFilePathForNg() . '.html'
+command! NgOpenStyle :execute 'new ' . s:etFilePathForNg() . '.scss'
+command! NgVOpenStyle :execute 'vnew ' . s:GetFilePathForNg() . '.scss'
+command! NgOpenTest :execute 'new ' . s:GetFilePathForNg() . '.spec.ts'
+command! NgVOpenTest :execute 'vnew ' . s:GetFilePathForNg() . '.spec.ts'
 
 nnoremap [angluar-cli] <Nop>
 nmap <Space>a [angular-cli]
@@ -313,6 +319,7 @@ nmap <Space>a [angular-cli]
 nnoremap [angular-cli]c :<C-u>NgVOpenController<CR>
 nnoremap [angular-cli]v :<C-u>NgVOpenView<CR>
 nnoremap [angular-cli]s :<C-u>NgVOpenStyle<CR>
+nnoremap [angular-cli]t :<C-u>NgVOpenTest<CR>
 " }}}
 
 " NeoComplete {{{
