@@ -9,7 +9,7 @@ on_ft = ['javascript']
 
 [[plugins]]
 repo = 'neowit/vim-force.com'
-on_ft = ['apexcode', 'visualforce']
+on_ft = ['apexcode', 'visualforce', 'aura-xml']
 on_cmd = 'ApexInitProject'
 
 [[plugins]]

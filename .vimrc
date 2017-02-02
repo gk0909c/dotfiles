@@ -524,6 +524,7 @@ if !exists('g:tcomment_types')
 endif
 let g:tcomment_types['apexcode'] = '// %s'
 let g:tcomment_types['visualforce'] = '<!-- %s -->'
+let g:tcomment_types['aura-xml'] = '<!-- %s -->'
 
 " }}}
 
