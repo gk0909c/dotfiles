@@ -358,7 +358,7 @@ let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
 let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
 
 " }}}
@@ -384,6 +384,7 @@ let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
 let g:syntastic_scss_checkers = ['sass_lint']
 let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
+let g:syntastic_ruby_checkers = ["rubocop"]
 
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,naming,unusedcode'
 " let g:syntastic_html_tidy_quiet_messages = {
@@ -456,14 +457,15 @@ endif
 
 " vim-monster setting {{{
 " let g:monster#completion#rcodetools#backend = "async_rct_complete"
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " let g:neocomplete#sources#omni#input_patterns = {
 "       \ 'ruby': '[^. *\t]\.\w*\|\h\w*::'
 "       \}
 " }}}
 " rubycomplete setting {{{
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_rails = 1
-let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_rails = 1
+" let g:rubycomplete_classes_in_global = 1
 " }}}
 
 " javascript-libraries-syntax setting {{{

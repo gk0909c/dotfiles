@@ -41,3 +41,7 @@ on_ft = [ 'r' ]
 repo = 'Quramy/tsuquyomi'
 on_ft = [ 'typescript' ]
 
+# [[plugins]]
+# repo = 'osyo-manga/vim-monster'
+# build = 'gem install rcodetools'
+# on_ft = [ 'ruby' ]
