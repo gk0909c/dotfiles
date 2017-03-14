@@ -475,6 +475,7 @@ let g:used_javascript_libs = 'jasmine'
 " Markdown setting {{{
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_folding_level = 3
 
 augroup MyAutoCmd
   autocmd Filetype markdown imap <buffer> <C-o> <Plug>(mdnl_linebreak)
