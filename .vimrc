@@ -278,6 +278,14 @@ nnoremap <expr> [edit]vn ':<C-u>vnew ' . expand("%:h") . '/'
 
 " }}}
 
+" quick fix setting {{{
+nnoremap [quickfix] <Nop>
+nmap <Space>q [quickfix]
+nnoremap <expr> [quickfix]p ':cprevious<CR>'
+nnoremap <expr> [quickfix]n ':cnext<CR>'
+
+" }}}
+
 " npm setting {{{
   command! -nargs=1 NpmInstallSave :execute '!npm install --save ' . "<args>"
   command! -nargs=1 NpmInstallSaveDev :execute '!npm install --save-dev ' . "<args>"
