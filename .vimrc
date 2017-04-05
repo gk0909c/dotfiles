@@ -26,6 +26,8 @@ vnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 set foldmethod=marker
 set cursorline
 set backspace=indent,eol,start
+set hlsearch
+nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
 
 augroup MyAutoCmd
   autocmd FileType json setlocal conceallevel=0
