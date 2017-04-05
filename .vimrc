@@ -1,9 +1,4 @@
-" encoding setting {{{
-set encoding=utf-8
-set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp
-set fileformat=unix
-set fileformats=unix,dos,mac
-" }}}
+
 
 " filetype setting {{{
 augroup MyAutoCmd
@@ -405,6 +400,7 @@ let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,n
 let g:syntastic_html_checkers = []
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_filetype_map = { "aura-javascript": "javascript" } 
 "}}}
 
 " easy-align setting {{{
