@@ -1,4 +1,9 @@
-
+" encoding setting {{{
+set encoding=utf-8		
+set fileencodings=utf-8,cp932,sjis,euc-jp,iso-2022-jp		
+set fileformat=unix		
+set fileformats=unix,dos,mac		
+" }}}
 
 " filetype setting {{{
 augroup MyAutoCmd
@@ -561,6 +566,7 @@ call lexima#add_rule({
 
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
+  autocmd BufNewFile,BufRead *_js.resource set filetype=javascript
   autocmd BufWritePre *.ts,*.js,*.java,*.rb,*.py,*.php :%s/\s\+$//ge
 augroup END
 
