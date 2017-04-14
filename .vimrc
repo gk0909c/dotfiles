@@ -176,17 +176,20 @@ endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('~/.vim/dein')
+if dein#load_state('~/.vim/dein')
+  call dein#begin('~/.vim/dein')
 
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+  " Let dein manage dein
+  " Required:
+  call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-call dein#load_toml("~/.vim/plugins.toml", {'lazy': 0}) 
-call dein#load_toml("~/.vim/plugins_lazy.toml", {'lazy': 1}) 
+  call dein#load_toml('~/.vim/plugins.toml', {'lazy': 0}) 
+  call dein#load_toml('~/.vim/plugins_lazy.toml', {'lazy': 1}) 
 
-" Required:
-call dein#end()
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
 
 " Required:
 filetype plugin indent on
@@ -566,7 +569,7 @@ call lexima#add_rule({
 
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
-  autocmd BufNewFile,BufRead *_js.resource set filetype=javascript
+  autocmd BufRead,BufNewFile *_js.resource set filetype=javascript
   autocmd BufWritePre *.ts,*.js,*.java,*.rb,*.py,*.php :%s/\s\+$//ge
 augroup END
 
