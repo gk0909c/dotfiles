@@ -145,7 +145,7 @@ function! LoadMyColorshcheme()
   highlight LineNr ctermfg=245
 
   if s:is_windows
-    highlight LineNr guifg=gray50
+    highlight LineNr guifg=#778899
   endif
 endfunction
 " }}}
