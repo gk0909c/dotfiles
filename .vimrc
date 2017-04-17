@@ -36,6 +36,7 @@ nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
 
 augroup MyAutoCmd
   autocmd FileType json setlocal conceallevel=0
+  autocmd CmdwinEnter * :setlocal relativenumber
 augroup END
 " }}}
 
