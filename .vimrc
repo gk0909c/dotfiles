@@ -26,13 +26,13 @@ set number
 set ruler
 set laststatus=2 
 set cmdheight=2
-nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
-vnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+nnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
+vnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
 set foldmethod=marker
 set cursorline
 set backspace=indent,eol,start
 set hlsearch
-nnoremap <ESC><ESC> :<C-u>nohlsearch<CR>
+nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 
 augroup MyAutoCmd
   autocmd FileType json setlocal conceallevel=0
@@ -246,28 +246,28 @@ nnoremap [vimshell]v :<C-u>vnew<CR><ESC>:VimShell<CR><ESC><C-w>l
 " git setting {{{
 nnoremap [git] <Nop>
 nmap <Space>g [git]
-nnoremap [git]s :<C-u>Gstatus<CR>7j
-nnoremap [git]c :<C-u>Gcommit<CR>i
+nnoremap <silent> [git]s :<C-u>Gstatus<CR>7j
+nnoremap <silent> [git]c :<C-u>Gcommit<CR>i
 nnoremap [git]ps :<C-u>Gpush<Space>
 
-nnoremap [git]v :<C-u>Agit<CR>
-nnoremap [git]l :<C-u>!git log -20 --no-merges --date=short --pretty='format:\%C(yellow)\%h \%C(green)\%cd \%C(blue)\%an\%C(red)\%d \%C(reset)\%s'<CR>
+nnoremap <silent> [git]v :<C-u>Agit<CR>
+nnoremap <silent> [git]l :<C-u>!git log -20 --no-merges --date=short --pretty='format:\%C(yellow)\%h \%C(green)\%cd \%C(blue)\%an\%C(red)\%d \%C(reset)\%s'<CR>
 nnoremap [git]r :<C-u>!git rebase -i 
 " }}}
 
 " tab {{{
 nnoremap [tab] <Nop>
 nmap t [tab]
-nnoremap [tab]t :<C-u>tabnew<CR>
-nnoremap [tab]e :<C-u>tabnew<Space>%<CR>
-nnoremap [tab]n :<C-u>tabnext<CR>
-nnoremap [tab]p :<C-u>tabprevious<CR>
-nnoremap [tab]c :<C-u>tabclose<CR>
-nnoremap [tab]f :<C-u>tabfirst<CR>
-nnoremap [tab]l :<C-u>tablast<CR>
+nnoremap <silent> [tab]t :<C-u>tabnew<CR>
+nnoremap <silent> [tab]e :<C-u>tabnew<Space>%<CR>
+nnoremap <silent> [tab]n :<C-u>tabnext<CR>
+nnoremap <silent> [tab]p :<C-u>tabprevious<CR>
+nnoremap <silent> [tab]c :<C-u>tabclose<CR>
+nnoremap <silent> [tab]f :<C-u>tabfirst<CR>
+nnoremap <silent> [tab]l :<C-u>tablast<CR>
 
 for s:i in range(1, 9)
-  execute "nnoremap [tab]" . s:i . " :<C-u>tabnext" . s:i . "<CR>"
+  execute "nnoremap <silent> [tab]" . s:i . " :<C-u>tabnext" . s:i . "<CR>"
 endfor
 
 function! s:Tabonly()
@@ -276,12 +276,12 @@ function! s:Tabonly()
     execute ':tabonly'
   endif
 endfunction
-nnoremap [tab]o :<C-u>call <SID>Tabonly()<CR>
+nnoremap <silent> [tab]o :<C-u>call <SID>Tabonly()<CR>
 " }}}
 
 " edit etc {{{
 nnoremap [edit] <Nop>
-nmap e [edit]
+nmap <space>e [edit]
 nnoremap <expr> [edit]e ':<C-u>e ' . expand("%:h") . '/'
 nnoremap <expr> [edit]n ':<C-u>new ' . expand("%:h") . '/'
 nnoremap <expr> [edit]vn ':<C-u>vnew ' . expand("%:h") . '/'
@@ -291,8 +291,8 @@ nnoremap <expr> [edit]vn ':<C-u>vnew ' . expand("%:h") . '/'
 " quick fix setting {{{
 nnoremap [quickfix] <Nop>
 nmap <Space>q [quickfix]
-nnoremap <expr> [quickfix]p ':cprevious<CR>'
-nnoremap <expr> [quickfix]n ':cnext<CR>'
+nnoremap <silent> <expr> [quickfix]p ':cprevious<CR>'
+nnoremap <silent> <expr> [quickfix]n ':cnext<CR>'
 
 " }}}
 
