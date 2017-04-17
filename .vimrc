@@ -267,7 +267,9 @@ nnoremap <silent> [tab]f :<C-u>tabfirst<CR>
 nnoremap <silent> [tab]l :<C-u>tablast<CR>
 
 for s:i in range(1, 9)
+  let s:moveTo = s:i - 1
   execute "nnoremap <silent> [tab]" . s:i . " :<C-u>tabnext" . s:i . "<CR>"
+  execute "nnoremap <silent> [tab]m" . s:moveTo . " :<C-u>tabm " . s:moveTo . "<CR>"
 endfor
 
 function! s:Tabonly()
