@@ -266,6 +266,10 @@ nnoremap [tab]c :<C-u>tabclose<CR>
 nnoremap [tab]f :<C-u>tabfirst<CR>
 nnoremap [tab]l :<C-u>tablast<CR>
 
+for s:i in range(1, 9)
+  execute "nnoremap [tab]" . s:i . " :<C-u>tabnext" . s:i . "<CR>"
+endfor
+
 function! s:Tabonly()
   let choice = confirm('close all tab?(except selecting tab)', "y yes\nn no")
   if choice == 1
