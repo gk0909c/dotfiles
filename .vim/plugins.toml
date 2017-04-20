@@ -106,3 +106,5 @@ build = 'npm install -g eslint eslint-plugin-react'
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
