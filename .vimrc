@@ -490,6 +490,26 @@ endif
 " let g:rubycomplete_classes_in_global = 1
 " }}}
 
+" rspec setting {{{
+let g:quickrun_config = {
+\   "ruby.rspec" : {
+\     "command": "bundle",
+\     "exec": "%c exec rspec %s %o" ,
+\     "cmdopt": "-c -fd --tty"
+\   },
+\   "ruby.rspec_line" : {
+\     "command": "bundle",
+\     "exec": "%c exec rspec %s:%{line('.')} %o" ,
+\     "cmdopt": '-c -fd --tty'
+\   }
+\}
+autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby.rspec
+
+augroup MyAutoCmd
+  autocmd FileType quickrun AnsiEsc
+augroup END
+" }}}
+
 " javascript-libraries-syntax setting {{{
 let g:used_javascript_libs = 'jasmine'
 " }}}

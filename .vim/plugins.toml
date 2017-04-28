@@ -108,3 +108,6 @@ build = 'make'
 
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
+
+[[plugins]]
+repo = 'vim-scripts/AnsiEsc.vim'
