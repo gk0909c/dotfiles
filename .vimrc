@@ -595,6 +595,11 @@ call lexima#add_rule({
       \ 'at': '^\s*<?php\%#',
       \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>?>'})
 
+call lexima#add_rule({
+      \ 'filetype': ['ruby.rspec'],
+      \ 'at': '^\s*\(describe\|it\|context\|scenario\|before\|after\).\+do\%#',
+      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>end'})
+
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
   autocmd BufRead,BufNewFile *_js.resource set filetype=javascript
