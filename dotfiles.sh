@@ -17,3 +17,6 @@ ln -sf ~/dotfiles/.vim/autoload/ ~/.vim/
 ln -sf ~/dotfiles/.vim/dict/ ~/.vim/
 ln -sf ~/dotfiles/.vim/snippets/ ~/.vim/
 
+ln -sf ~/dotfiles/.bashrc ~/
+ln -sf ~/dotfiles/.bash_base ~/
+
