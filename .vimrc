@@ -605,7 +605,7 @@ augroup MyAutoCmd
   autocmd BufRead,BufNewFile *_js.resource set filetype=javascript
   autocmd BufWritePre *.ts,*.js,*.java,*.rb,*.py,*.php :%s/\s\+$//ge
   autocmd BufRead,BufNewFile .bash_base set filetype=sh
-  autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
+  autocmd BufRead,BufNewFile Jenkinsfile* set filetype=groovy
 augroup END
 
 let g:previm_custom_css_path = expand('~/.vim/vimpreview.css')
