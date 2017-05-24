@@ -407,6 +407,9 @@ let g:syntastic_php_checkers = ["php", "phpcs", "phpmd"]
 let g:syntastic_ruby_checkers = ["rubocop"]
 let g:syntastic_coffee_checkers = ["coffeelint"]
 
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
+
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,naming,unusedcode'
 " let g:syntastic_html_tidy_quiet_messages = {
 "       \ 'regex': 'my-app'
