@@ -25,6 +25,7 @@ set noundofile
 set number
 set ruler
 set laststatus=2 
+set statusline=%f%m%r%h%w%=%l/%L,%c
 set cmdheight=2
 nnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
 vnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
