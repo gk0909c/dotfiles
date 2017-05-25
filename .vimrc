@@ -28,7 +28,9 @@ set laststatus=2
 set cmdheight=2
 nnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
 vnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
-set foldmethod=marker
+set foldmethod=syntax
+set foldlevel=2
+set foldnestmax=3
 set cursorline
 set backspace=indent,eol,start
 set hlsearch
