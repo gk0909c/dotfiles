@@ -111,3 +111,10 @@ repo = 'kchmck/vim-coffee-script'
 
 [[plugins]]
 repo = 'vim-scripts/AnsiEsc.vim'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+build = 'gem install refe2 && bitclust setup'
+
+[[plugins]]
+repo = 'yuku-t/vim-ref-ri'
