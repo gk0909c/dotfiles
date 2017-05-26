@@ -238,6 +238,8 @@ nmap <Space>f [vimfiler]
 nnoremap [vimfiler]<Space> :<C-u>VimFiler<CR>
 nnoremap [vimfiler]e :<C-u>VimFilerExplorer<CR>
 
+let g:vimfiler_force_overwrite_statusline = 0
+
 nnoremap [vimshell] <Nop>
 nmap <Space>s [vimshell]
 nnoremap [vimshell]<Space> :<C-u>VimShell<CR>
