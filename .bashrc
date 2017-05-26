@@ -30,11 +30,6 @@ function docker-build() {
   fi
 }
 
-# project helper
-alias publish-istanbul="light-server -s ./coverage/lcov-report -p 3000 -b 0.0.0.0"
-alias publish-jsdoc="light-server -s ./jsdoc -p 3000 -b 0.0.0.0"
-alias publish-simplecov="light-server -s ./coverage -p 3000 -b 0.0.0.0"
-
 # grep sjis file
 function grepSjis() {
   if [ $# -ne 2 ]; then
@@ -47,3 +42,6 @@ function grepSjis() {
 
 # others
 export TERM=xterm-256color
+
+# alias
+source ~/.my_aliases.sh
