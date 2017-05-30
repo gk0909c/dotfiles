@@ -20,6 +20,9 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
+repo = 'tsukkee/unite-tag'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]
