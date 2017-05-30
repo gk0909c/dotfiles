@@ -29,9 +29,6 @@ set statusline=%f%m%r%h%w%=%l/%L,%c
 set cmdheight=2
 nnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
 vnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
-set foldmethod=syntax
-set foldlevel=2
-set foldnestmax=3
 set cursorline
 set backspace=indent,eol,start
 set hlsearch
@@ -40,6 +37,31 @@ nnoremap <silent> <ESC><ESC> :<C-u>nohlsearch<CR>
 augroup MyAutoCmd
   autocmd FileType json setlocal conceallevel=0
   autocmd CmdwinEnter * :setlocal relativenumber
+augroup END
+" }}}
+
+" folding setting {{{
+function! RubyFoldExpr(line)
+  " do not use sybID and synIDattr
+  let current = getline(a:line) 
+  let ignore = current =~ '^\s*#' || current =~ 'RSpec.describe'
+  let block_start = current =~ '^\s\+\(def\|if\|do\)' || current =~ '\sdo\(\s|\|$\)'
+  let block_end = current =~ '^\s\+end$'
+
+  if ignore
+    return '='
+  elseif block_start
+    return 'a1'
+  elseif block_end
+    return 's1'
+  else
+    return '='
+  endif
+endfunction
+
+augroup MyAutoCmd
+  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType ruby setlocal foldmethod=expr foldexpr=RubyFoldExpr(v:lnum)
 augroup END
 " }}}
 
