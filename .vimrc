@@ -110,6 +110,7 @@ let s:is_windows = has('win32') || has('win64')
 
 if s:is_windows
   set shellslash
+  set runtimepath+=~/.vim
 endif
 " }}}
 
@@ -599,6 +600,16 @@ endif
 let g:tcomment_types['apexcode'] = '// %s'
 let g:tcomment_types['visualforce'] = '<!-- %s -->'
 let g:tcomment_types['aura-xml'] = '<!-- %s -->'
+
+" }}}
+
+" powershell {{{
+augroup MyAutoCmd
+  autocmd BufNewFile,BufRead *.ps1 set filetype=ps1
+  autocmd FileType ps1 setlocal fileencoding=cp932
+  autocmd FileType ps1 setlocal fileformat=dos 
+augroup END
+
 
 " }}}
 
