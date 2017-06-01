@@ -240,18 +240,21 @@ let g:indent_guides_guide_size=1
 
 " unite.vim setting {{{
 let g:vimfiler_as_default_explorer = 1
-call unite#custom#default_action("source/bookmark/directory", "cd")
 
-nnoremap [unite] <Nop>
-nmap <Space>u [unite]
-nnoremap [unite]<Space>  :<C-u>Unite<Space>
-nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
-nnoremap <silent> [unite]r   :<C-u>Unite file_rec/git<CR>
-nnoremap <silent> [unite]g   :<C-u>Unite grep/git<CR>
-nnoremap <silent> [unite]a   :<C-u>Unite file_rec/async<CR>
-nnoremap <silent> [unite]m   :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]o   :<C-u>Unite outline<CR>
+if dein#is_sourced('unite.vim')
+  call unite#custom#default_action("source/bookmark/directory", "cd")
+
+  nnoremap [unite] <Nop>
+  nmap <Space>u [unite]
+  nnoremap [unite]<Space>  :<C-u>Unite<Space>
+  nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
+  nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
+  nnoremap <silent> [unite]r   :<C-u>Unite file_rec/git<CR>
+  nnoremap <silent> [unite]g   :<C-u>Unite grep/git<CR>
+  nnoremap <silent> [unite]a   :<C-u>Unite file_rec/async<CR>
+  nnoremap <silent> [unite]m   :<C-u>Unite bookmark<CR>
+  nnoremap <silent> [unite]o   :<C-u>Unite outline<CR>
+endif
 " }}}
 
 " VimFiler, VimShell {{{
@@ -370,44 +373,45 @@ nnoremap [angular-cli]t :<C-u>NgVOpenTest<CR>
 " }}}
 
 " NeoComplete {{{
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+if dein#is_sourced('neocomplete.vim')
+  let g:acp_enableAtStartup = 0
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-let g:neocomplete#enable_auto_close_preview = 1
+  let g:neocomplete#enable_auto_close_preview = 1
 
-" dictionary
-let s:dict_dir = '~/.vim/dict/'
-let s:typescript_dictionaries = [
-      \ s:dict_dir . 'typescript.dict',
-      \ s:dict_dir . 'typescript.angular.dict'
-      \ ]
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ '_': s:dict_dir . 'common.dict',
-      \ 'html': s:dict_dir . 'bootstrap.dict',
-      \ 'java': s:dict_dir . 'java.dict',
-      \ 'php': s:dict_dir . 'php.dict',
-      \ 'typescript': join(s:typescript_dictionaries, ',')
-      \ }
+  " dictionary
+  let s:dict_dir = '~/.vim/dict/'
+  let s:typescript_dictionaries = [
+        \ s:dict_dir . 'typescript.dict',
+        \ s:dict_dir . 'typescript.angular.dict'
+        \ ]
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ '_': s:dict_dir . 'common.dict',
+        \ 'html': s:dict_dir . 'bootstrap.dict',
+        \ 'java': s:dict_dir . 'java.dict',
+        \ 'php': s:dict_dir . 'php.dict',
+        \ 'typescript': join(s:typescript_dictionaries, ',')
+        \ }
 
-let s:keyword_patterns = {}
-let s:keyword_patterns.typescript = '\h\w*\%(-\w*\)*'
-let s:keyword_patterns.html = '\h\w*\%(-\w*\)*'
-call neocomplete#custom#source('dictionary', 'keyword_patterns', s:keyword_patterns)
+  let s:keyword_patterns = {}
+  let s:keyword_patterns.typescript = '\h\w*\%(-\w*\)*'
+  let s:keyword_patterns.html = '\h\w*\%(-\w*\)*'
+  call neocomplete#custom#source('dictionary', 'keyword_patterns', s:keyword_patterns)
 
-" omni func
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
+  " omni func
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
+  let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
+  let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
+  let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
+  let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+  " let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+  " let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
 endif
-let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-" let g:neocomplete#force_omni_input_patterns.r = '[[:alnum:].\\]\+'
-
 " }}}
 
 " Neo snippet {{{
@@ -501,9 +505,9 @@ if dein#tap('vim-force.com')
   call dein#set_hook('vim-force.com', 'hook_source', function('s:init_vim_force'))
 endif
 " filetypes related sfdc are owned in vim-force plugin
-if dein#check_install(['vim-force.com']) == 0
-  let s:vim_force_installed_path = dein#get('vim-force.com').path . '/ftdetect/vim-force.com.vim'
-  execute 'source ' . s:vim_force_installed_path
+let s:vim_force_ftdetect_path = dein#get('vim-force.com').path . '/ftdetect/vim-force.com.vim'
+if filereadable(s:vim_force_ftdetect_path)
+  execute 'source ' . s:vim_force_ftdetect_path
 endif
 " }}}
 
@@ -557,11 +561,6 @@ augroup MyAutoCmd
   autocmd Filetype markdown imap <buffer> <C-j> <Plug>(mdnl_split_as_list)
   autocmd Filetype markdown nmap <buffer> <C-j> <Plug>(mdnl_split_as_list)
 augroup END
-
-call lexima#add_rule({
-      \ 'filetype': ['markdown'],
-      \ 'at': '^\s*\%(\%([+*-]\)\|\%([0-9]\+\.\)\)\s\%#',
-      \ 'char': '[', 'input': '[<space>]<space>' })
 " }}}
 
 " eclim setting {{{
@@ -615,20 +614,22 @@ let g:quickrun_config.java = {
 
 let g:zenspace#default_mode = 'on'
 
-call lexima#add_rule({
-      \ 'filetype': ['vimspec'],
-      \ 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#',
-      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
+if dein#is_sourced('lexima.vim')
+  call lexima#add_rule({
+        \ 'filetype': ['vimspec'],
+        \ 'at': '^\s*\%([dD]escribe\|[cC]ontext\|[iI]t\).*\%#',
+        \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>End'})
 
-call lexima#add_rule({
-      \ 'filetype': ['php'],
-      \ 'at': '^\s*<?php\%#',
-      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>?>'})
+  call lexima#add_rule({
+        \ 'filetype': ['php'],
+        \ 'at': '^\s*<?php\%#',
+        \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>?>'})
 
-call lexima#add_rule({
-      \ 'filetype': ['ruby.rspec'],
-      \ 'at': '^\s*\(describe\|it\|context\|scenario\|before\|after\).\+do\%#',
-      \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>end'})
+  call lexima#add_rule({
+        \ 'filetype': ['ruby.rspec'],
+        \ 'at': '^\s*\(describe\|it\|context\|scenario\|before\|after\).\+do\%#',
+        \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>end'})
+endif
 
 augroup MyAutoCmd
   autocmd BufRead,BufNewFile /etc/nginx/* set ft=nginx
