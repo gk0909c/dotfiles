@@ -1,20 +1,24 @@
 #!/bin/bash
 
-# cd ~/dotfiles
-cd ~/tmp/bbb/test-git-status
+check_git_status() {
+  git status | grep "$1" > /dev/null
+  return $?
+}
+
+cd ~/dotfiles
 git fetch origin master 2> /dev/null
 
 
-git status | grep "and can be fast-forwarded" > /dev/null
+check_git_status "and can be fast-forwarded"
 can_fast_forward=$?
 
-git status | grep "Changes not staged for commit" > /dev/null
+check_git_status "Changes not staged for commit"
 have_not_stated_change=$?
 
-git status | grep "Changes to be committed" > /dev/null
+check_git_status "Changes to be committed"
 have_stated_change=$?
 
-git status | grep "have diverged" > /dev/null
+check_git_status "have diverged"
 have_diverged=$?
 
 if [ $have_diverged -eq 0 ]; then
@@ -30,6 +34,7 @@ elif [ $can_fast_forward -eq 0 ]; then
     echo -e "\e[m"
   else
     git pull origin master
-    echo "execute git pull"
+    echo ""
+    echo "executed git pull on dotfiles repository"
   fi
 fi
