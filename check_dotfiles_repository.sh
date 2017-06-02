@@ -29,7 +29,8 @@ if [ $have_diverged -eq 0 ]; then
 elif [ $can_fast_forward -eq 0 ]; then
   if [ $have_not_stated_change -eq 0 -o $have_stated_change -eq 0 ]; then
     echo -e -n "\e[31m"
-    echo "you have local only change on dotfiles repository."
+    echo "remote dotfiles have been updated."
+    echo "but you have local only change on dotfiles repository."
     echo -n "check your status."
     echo -e "\e[m"
   else
