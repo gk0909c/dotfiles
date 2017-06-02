@@ -51,3 +51,6 @@ export TERM=xterm-256color
 
 # alias
 source ~/.my_aliases.sh
+
+# check and update dotfiles repository
+./check_dotfiles_repository.sh
