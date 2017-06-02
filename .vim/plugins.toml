@@ -46,6 +46,10 @@ repo = 'tomtom/tcomment_vim'
 [[plugins]]
 repo = 'Konfekt/FastFold'
 
+# python folding setting
+[[plugins]]
+repo = 'tmhedberg/SimpylFold'
+
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 
@@ -115,9 +119,14 @@ repo = 'kchmck/vim-coffee-script'
 [[plugins]]
 repo = 'vim-scripts/AnsiEsc.vim'
 
+# for refernce
 [[plugins]]
 repo = 'thinca/vim-ref'
 build = 'gem install refe2 && bitclust setup'
 
+# for ruby refernce
 [[plugins]]
 repo = 'yuku-t/vim-ref-ri'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
