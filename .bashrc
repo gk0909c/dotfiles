@@ -8,13 +8,13 @@ esac
 source ~/.bash_base
 
 # about ruby
-if type rbenv >/dev/null 2>&1; then
+if [ -d $HOME/.rbenv ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
 
 # about python
-if type pyenv >/dev/null 2>&1; then
+if [ -d $HOME/.pyenv ]; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
@@ -22,7 +22,7 @@ if type pyenv >/dev/null 2>&1; then
 fi
 
 # about nodejs
-if type nvm >/dev/null 2>&1; then
+if [ -d $HOME/.nvm ]; then
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 fi
