@@ -520,10 +520,24 @@ endif
 "       \ 'ruby': '[^. *\t]\.\w*\|\h\w*::'
 "       \}
 " }}}
-" rubycomplete setting {{{
+
+" ruby setting {{{
 " let g:rubycomplete_buffer_loading = 1
 " let g:rubycomplete_rails = 1
 " let g:rubycomplete_classes_in_global = 1
+
+function! s:RubySpecFilePath()
+  let filepath = split(expand("%:r"), '/')
+  let spec_filepath = insert(filepath[1:], 'spec', 0)
+  return join(spec_filepath, '/') . '_spec.rb'
+endfunction
+
+augroup MyAutoCmd
+  autocmd FileType ruby command! SpecOpen :execute 'e ' . s:RubySpecFilePath()
+  autocmd FileType ruby command! SpecOpenN :execute 'new ' . s:RubySpecFilePath()
+  autocmd FileType ruby command! SpecOpenV :execute 'vnew ' . s:RubySpecFilePath()
+  autocmd FileType ruby command! SpecOpenT :execute 'tabnew ' . s:RubySpecFilePath()
+augroup END
 " }}}
 
 " rspec setting {{{
