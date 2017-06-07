@@ -639,7 +639,11 @@ if dein#is_sourced('lexima.vim')
 
   call lexima#add_rule({
         \ 'filetype': ['ruby.rspec'],
-        \ 'at': '^\s*\(describe\|it\|context\|scenario\|before\|after\).\+do\%#',
+        \ 'at': '\<do\>\s*\%#$',
+        \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>end'})
+  call lexima#add_rule({
+        \ 'filetype': ['ruby.rspec'],
+        \ 'at': '^\s*\<if\>\s\+\w\+\s*\%#',
         \ 'char': '<CR>', 'input': '<CR>' ,'input_after': '<CR>end'})
 endif
 
