@@ -23,6 +23,9 @@ repo = 'Shougo/unite.vim'
 repo = 'tsukkee/unite-tag'
 
 [[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]

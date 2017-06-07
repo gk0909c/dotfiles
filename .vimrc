@@ -249,12 +249,10 @@ if dein#is_sourced('unite.vim')
   nmap <Space>u [unite]
   nnoremap [unite]<Space>  :<C-u>Unite<Space>
   nnoremap <silent> [unite]b   :<C-u>Unite buffer<CR>
-  nnoremap <silent> [unite]f   :<C-u>Unite file<CR>
-  nnoremap <silent> [unite]r   :<C-u>Unite file_rec/git<CR>
+  nnoremap <silent> [unite]r   :<C-u>Unite file_mru<CR>
   nnoremap <silent> [unite]g   :<C-u>Unite grep/git<CR>
-  nnoremap <silent> [unite]a   :<C-u>Unite file_rec/async<CR>
+  nnoremap <silent> [unite]o   :<C-u>Unite file_rec/git<CR>
   nnoremap <silent> [unite]m   :<C-u>Unite bookmark<CR>
-  nnoremap <silent> [unite]o   :<C-u>Unite outline<CR>
 endif
 " }}}
 
