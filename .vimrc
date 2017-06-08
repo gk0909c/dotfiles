@@ -573,6 +573,7 @@ let g:quickrun_config['ruby.rspec_line'] = {
 
 augroup MyAutoCmd
   autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby.rspec
+  autocmd FileType ruby.rspec nnoremap <silent> <expr> <leader>lr ':<C-u>QuickRun ruby.rspec_line<CR>'
   autocmd FileType quickrun AnsiEsc
 augroup END
 
