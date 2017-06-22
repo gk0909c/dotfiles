@@ -560,12 +560,12 @@ let g:quickrun_config.java = {
       \ 'exec' : ['javac -J-Dfile.encoding=UTF8 %o %s', '%c -Dfile.encoding=UTF8 %s:t:r %a']
       \ }
 
-let g:quickrun_config['ruby.rspec'] = {
+let g:quickrun_config['ruby.rspec_all'] = {
 \     "command": "bundle",
 \     "exec": "%c exec rspec %s %o" ,
 \     "cmdopt": "-c -fd --tty"
 \   }
-let g:quickrun_config['ruby.rspec_line'] = {
+let g:quickrun_config['ruby.rspec'] = {
 \     "command": "bundle",
 \     "exec": "%c exec rspec %s:%{line('.')} %o" ,
 \     "cmdopt": '-c -fd --tty'
@@ -573,7 +573,7 @@ let g:quickrun_config['ruby.rspec_line'] = {
 
 augroup MyAutoCmd
   autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby.rspec
-  autocmd FileType ruby.rspec nnoremap <silent> <expr> <leader>lr ':<C-u>QuickRun ruby.rspec_line<CR>'
+  autocmd FileType ruby.rspec nnoremap <silent> <expr> <leader>ra ':<C-u>QuickRun ruby.rspec_all<CR>'
   autocmd FileType quickrun AnsiEsc
 augroup END
 
