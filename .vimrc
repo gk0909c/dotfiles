@@ -537,6 +537,7 @@ function! s:RubySpecFilePath()
 endfunction
 
 augroup MyAutoCmd
+  " for ruby project (not rails)
   autocmd FileType ruby command! LibOpen  :execute 'e '      . s:RubyLibFilePath()
   autocmd FileType ruby command! LibOpenN :execute 'new '    . s:RubyLibFilePath()
   autocmd FileType ruby command! LibOpenV :execute 'vnew '   . s:RubyLibFilePath()
@@ -546,6 +547,12 @@ augroup MyAutoCmd
   autocmd FileType ruby command! SpecOpenN :execute 'new '    . s:RubySpecFilePath()
   autocmd FileType ruby command! SpecOpenV :execute 'vnew '   . s:RubySpecFilePath()
   autocmd FileType ruby command! SpecOpenT :execute 'tabnew ' . s:RubySpecFilePath()
+augroup END
+
+augroup MyAutoCmd
+  command! RailsServerOnVagrant :execute 'Rails server -d -b 0.0.0.0'
+  command! RailsServerKill :execute '!kill `cat tmp/pids/server.pid`'
+  command! RailsServerRestart :execute 'Server! -d -b 0.0.0.0'
 augroup END
 " }}}
 
