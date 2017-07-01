@@ -170,7 +170,7 @@ function! LoadMyColorshcheme()
   endif
   highlight LineNr ctermfg=245
 
-  if s:is_windows
+  if s:is_windows || has('mac')
     highlight LineNr guifg=#778899
   endif
 endfunction

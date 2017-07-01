@@ -133,3 +133,6 @@ repo = 'yuku-t/vim-ref-ri'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
+
+[[plugins]]
+repo = 'stevearc/vim-arduino'
