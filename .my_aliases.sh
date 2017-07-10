@@ -4,6 +4,7 @@
 alias be-rake="bundle exec rake "
 alias be-rails="bundle exec rails "
 alias be-rspec="bundle exec rspec "
+alias be-forman-start="bundle exec foreman start"
 
 # about rails
 alias rails-server="bundle exec rails server -b 0.0.0.0 -d"
