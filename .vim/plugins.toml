@@ -136,3 +136,6 @@ repo = 'cespare/vim-toml'
 
 [[plugins]]
 repo = 'stevearc/vim-arduino'
+
+[[plugins]]
+repo = 'posva/vim-vue'
