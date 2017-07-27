@@ -21,5 +21,5 @@ ln -sf ~/dotfiles/.bashrc ~/
 ln -sf ~/dotfiles/.bash_base ~/
 ln -sf ~/dotfiles/.my_aliases.sh ~/
 
-ln -sf ~/dotfiles/.gitignore ~/
+ln -sf ~/dotfiles/.my_gitignore ~/.gitignore
 
