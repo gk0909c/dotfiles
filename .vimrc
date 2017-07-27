@@ -685,3 +685,9 @@ augroup END
 
 let g:previm_custom_css_path = expand('~/.vim/vimpreview.css')
 " }}}
+
+" bookmark setting {{{
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_sign = 'bm'
+" }}}

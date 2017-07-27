@@ -19,5 +19,7 @@ mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\.vim\dict"
 mklink /D %HOMEPATH%"\.vim\snippets" %HOMEPATH%"\dotfiles\.vim\snippets"
 mklink /D %HOMEPATH%"\.vim\syntax" %HOMEPATH%"\dotfiles\.vim\syntax"
 
+mklink /D %HOMEPATH%"\.gitignore" %HOMEPATH%"\dotfiles\.gitignore"
+
 pause
 exit 0
