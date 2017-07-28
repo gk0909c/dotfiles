@@ -25,7 +25,6 @@ set noundofile
 set number
 set ruler
 set laststatus=2 
-set statusline=%f%m%r%h%w%=%l/%L,%c
 set cmdheight=2
 nnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
 vnoremap <silent> <F3> :<C-u>setlocal relativenumber!<CR>
@@ -690,4 +689,11 @@ let g:previm_custom_css_path = expand('~/.vim/vimpreview.css')
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_sign = 'bm'
+" }}}
+
+" statusline {{{
+set statusline=%f%m%r%h%w
+set statusline+=\ %{SyntasticStatuslineFlag()}
+set statusline+=%=
+set statusline+=%l/%L,%c
 " }}}
