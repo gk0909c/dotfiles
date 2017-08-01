@@ -125,7 +125,7 @@ repo = 'vim-scripts/AnsiEsc.vim'
 # for refernce
 [[plugins]]
 repo = 'thinca/vim-ref'
-build = 'gem install refe2 && bitclust setup'
+build = 'gem install refe2; bitclust setup'
 
 # for ruby refernce
 [[plugins]]
@@ -142,3 +142,6 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'MattesGroeger/vim-bookmarks'
+
+[[plugins]]
+repo = 'dag/vim-fish'
