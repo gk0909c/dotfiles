@@ -23,6 +23,7 @@ ln -sf ~/dotfiles/.my_gitignore ~/.gitignore
 # fish
 ln -sf ~/dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
 ln -sf ~/dotfiles/.config/fish/fishfile ~/.config/fish/fishfile
+ln -sf ~/dotfiles/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
 
 # tmux
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf

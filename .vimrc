@@ -691,9 +691,32 @@ let g:bookmark_auto_save = 1
 let g:bookmark_sign = 'bm'
 " }}}
 
-" statusline {{{
-set statusline=%f%m%r%h%w
-set statusline+=\ %{SyntasticStatuslineFlag()}
-set statusline+=%=
-set statusline+=%l/%L,%c
+" lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'syntastic', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag'
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error'
+      \ }
+      \ }
+
+let g:syntastic_mode_map = { 'mode': 'passive' }
+augroup MyAutoCmd
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp,*.rb,*.py,*.js,*.coffee,*.vim call s:syntastic()
+augroup END
+
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
 " }}}

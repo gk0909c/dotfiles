@@ -145,3 +145,9 @@ repo = 'MattesGroeger/vim-bookmarks'
 
 [[plugins]]
 repo = 'dag/vim-fish'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'tpope/vim-obsession'

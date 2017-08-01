@@ -4,3 +4,5 @@ set -x INFOPATH $HOME/.linuxbrew/share/info $INFOPATH
 rbenv init - | source
 pyenv init - | source
 set -x NVM_DIR $HOME/.nvm
+
+set -x TERM xterm-256color

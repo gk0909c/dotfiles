@@ -18,9 +18,13 @@ I'm using below softwares.
 do below
 
 ```bash
-isudo apt install curl git tree
+sudo apt install curl git tree
+
+timedatectl set-timezone Asia/Tokyo
+
 git config --global user.name "username"
 git config --global user.email "your@email.com"
+git config --global core.excludesfile ~/.gitignore
 
 ```
 
