@@ -36,4 +36,5 @@ echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 pyenv install 3.6.2
 pyenv global 3.6.2
 
-
+# others
+brew install ctags
