@@ -315,6 +315,7 @@ nmap <space>e [edit]
 nnoremap <expr> [edit]e ':<C-u>e ' . expand("%:h") . '/'
 nnoremap <expr> [edit]n ':<C-u>new ' . expand("%:h") . '/'
 nnoremap <expr> [edit]vn ':<C-u>vnew ' . expand("%:h") . '/'
+nnoremap <expr> [edit]t ':<C-u>tabnew ' . expand("%:h") . '/'
 
 " }}}
 
