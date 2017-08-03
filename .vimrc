@@ -711,7 +711,6 @@ let g:lightline = {
 
 let g:syntastic_mode_map = { 'mode': 'passive' }
 augroup MyAutoCmd
-  autocmd!
   autocmd BufWritePost *.c,*.cpp,*.rb,*.py,*.js,*.coffee,*.vim call s:syntastic()
 augroup END
 
