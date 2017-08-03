@@ -1,5 +1,5 @@
 set fish_git_dirty_color red
-set fish_git_clean_color brown
+set fish_git_clean_color blue
 
 function parse_git_dirty
   if test (git status 2> /dev/null | tail -n1) != 'nothing to commit, working tree clean'
