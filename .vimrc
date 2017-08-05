@@ -699,6 +699,10 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'relativepath', 'syntastic', 'modified' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ [],
+      \             [ 'relativepath', 'modified' ] ]
+      \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
