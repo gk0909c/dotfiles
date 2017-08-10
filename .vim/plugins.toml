@@ -151,3 +151,6 @@ repo = 'itchyny/lightline.vim'
 
 [[plugins]]
 repo = 'tpope/vim-obsession'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'

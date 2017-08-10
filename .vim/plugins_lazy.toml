@@ -46,3 +46,6 @@ on_ft = [ 'typescript' ]
 # build = 'gem install rcodetools'
 # on_ft = [ 'ruby' ]
 
+[[plugins]]
+repo = 'sunaku/vim-ruby-minitest'
+on_ft = [ 'ruby' ]
