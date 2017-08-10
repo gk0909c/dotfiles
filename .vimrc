@@ -561,10 +561,16 @@ let g:quickrun_config['ruby.rspec'] = {
 \     "exec": "%c exec rspec %s:%{line('.')} %o" ,
 \     "cmdopt": '-c -fd --tty'
 \   }
+let g:quickrun_config['ruby.minitest'] = {
+\     "command": "ruby",
+\     "exec": "%c %o %s",
+\     "cmdopt": '-Ilib:app:test'
+\   }
 
 augroup MyAutoCmd
   autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby.rspec
   autocmd FileType ruby.rspec nnoremap <silent> <expr> <leader>ra ':<C-u>QuickRun ruby.rspec_all<CR>'
+  autocmd FileType ruby nnoremap <silent> <expr> <leader>mt ':<C-u>QuickRun ruby.minitest<CR>'
   autocmd FileType quickrun AnsiEsc
 augroup END
 
