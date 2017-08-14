@@ -45,7 +45,7 @@ augroup MyAutoCmd
 augroup END
 
 let ruby_fold = 1
-let ruby_foldable_groups = 'def do if case begin for % { ['
+let ruby_foldable_groups = 'def'
 " }}}
 
 " cursor {{{
@@ -509,15 +509,29 @@ endif
 " let g:rubycomplete_classes_in_global = 1
 
 function! s:RubyLibFilePath()
+  if isdirectory('test')
+    let specfile_suffix = '_test.rb'
+  else
+    let specfile_suffix = '_spec.rb'
+  endif
+  
   let filepath = split(expand("%"), '/')
   let lib_filepath = insert(filepath[1:], 'lib', 0)
-  return substitute(join(lib_filepath, '/') , '_spec.rb', '.rb', '')
+  return substitute(join(lib_filepath, '/') , specfile_suffix, '.rb', '')
 endfunction
 
 function! s:RubySpecFilePath()
+  if isdirectory('test')
+    let spec_root = 'test'
+    let specfile_suffix = '_test.rb'
+  else
+    let spec_root = 'spec'
+    let specfile_suffix = '_spec.rb'
+  endif
+
   let filepath = split(expand("%:r"), '/')
-  let spec_filepath = insert(filepath[1:], 'spec', 0)
-  return join(spec_filepath, '/') . '_spec.rb'
+  let spec_filepath = insert(filepath[1:], spec_root, 0)
+  return join(spec_filepath, '/') . specfile_suffix
 endfunction
 
 augroup MyAutoCmd
