@@ -62,10 +62,8 @@ set smartindent
 set autoindent
 
 augroup MyAutoCmd
-  autocmd FileType java setlocal shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType apexcode setlocal shiftwidth=4 tabstop=4 softtabstop=4
-  autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
+  autocmd FileType java,groovy,apexcode,php,markdown 
+        \ setlocal shiftwidth=4 tabstop=4 softtabstop=4
 augroup END
 " }}}
 
