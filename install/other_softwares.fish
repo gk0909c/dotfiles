@@ -18,14 +18,13 @@ echo 'rbenv init - | source' >> ~/.config/fish/config.fish
 . ~/.config/fish/config.fish
 rbenv install 2.4.1
 
-# nvm
-wget https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh
-bash install.sh
-rm install.sh
-fisher nvm
-echo "set -x NVM_DIR $HOME/.nvm" >> ~/.config/fish/config.fish
+# nodebrew
+brew install nodebrew
+mkdir -p ~/.nodebrew/src
+nodebrew install-binary v6.11.2
+nodebrew use v6.11.2
+echo 'set -U fish_user_paths $fish_user_paths $HOME/.nodebrew/current/bin' >> ~/.config/fish/config.fish 
 . ~/.config/fish/config.fish
-nvm install v6.11.1
 npm update -g npm
 
 # python
