@@ -387,7 +387,7 @@ if dein#is_sourced('neocomplete.vim')
   endif
   let g:neocomplete#force_omni_input_patterns.java = '\%(\h\w*\|)\)\.\w*'
   let g:neocomplete#force_omni_input_patterns.groovy = '\%(\h\w*\|)\)\.\w*'
-  let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
+  " let g:neocomplete#force_omni_input_patterns.apexcode = '\%(\h\w*\|)\)\.\w*'
   let g:neocomplete#force_omni_input_patterns.typescript = '\%(\h\w*\|)\)\.\w*'
   let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
   " let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
