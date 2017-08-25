@@ -6,3 +6,6 @@ set -U fish_user_paths $fish_user_paths $HOME/.nodebrew/current/bin
 pyenv init - | source
 
 set -x TERM xterm-256color
+
+# aliases
+alias docker-build-with-proxy="docker build --build-arg http_proxy=$http_proxy --build-arg http_proxy=$http_proxy "
