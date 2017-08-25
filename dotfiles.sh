@@ -28,6 +28,3 @@ ln -sf ~/dotfiles/.config/fish/functions/fish_prompt.fish ~/.config/fish/functio
 # tmux
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
-# install fzf
-__fzf_install
-
