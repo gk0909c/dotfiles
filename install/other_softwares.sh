@@ -12,7 +12,7 @@ brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # ruby
-sudo apt install zlib1g-dev
+sudo apt -y install zlib1g-dev
 brew install rbenv
 rbenv install 2.4.1
 
@@ -24,7 +24,7 @@ nodebrew use v6.11.2
 npm update -g npm
 
 # python
-sudo apt install libssl-dev
+sudo apt -y install libssl-dev
 brew install pyenv
 pyenv install 3.6.2
 pyenv global 3.6.2
