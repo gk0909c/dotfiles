@@ -729,6 +729,6 @@ endfunction
 
 " openbrowser {{{
 let g:netrw_nogx = 1
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
+nmap gb <Plug>(openbrowser-smart-search)
+vmap gb <Plug>(openbrowser-smart-search)
 " }}}
