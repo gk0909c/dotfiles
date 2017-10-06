@@ -10,6 +10,7 @@ augroup MyAutoCmd
   autocmd!
   autocmd BufNewFile,BufRead *.gradle set filetype=groovy
   autocmd BufNewFile,BufRead *.js.erb set filetype=javascript
+  autocmd BufNewFile,BufRead Dockerfile* set filetype=dockerfile
 augroup END
 " }}}
 
