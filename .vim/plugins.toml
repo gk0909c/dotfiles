@@ -54,9 +54,6 @@ repo = 'Konfekt/FastFold'
 repo = 'tmhedberg/SimpylFold'
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
 repo = 'thinca/vim-themis'
 
 [[plugins]]
@@ -107,10 +104,6 @@ depends = ['ynkdir/vim-vimlparser']
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-
-[[plugins]]
-repo = 'scrooloose/syntastic'
-build = 'npm install -g eslint eslint-plugin-react'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'

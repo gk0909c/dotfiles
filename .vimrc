@@ -201,6 +201,7 @@ if dein#load_state('~/.vim/dein')
 endif
 
 " Required:
+let g:ruby_path = []
 filetype plugin indent on
 syntax enable
 
@@ -269,13 +270,13 @@ nnoremap [git]r :<C-u>!git rebase -i
 " tab {{{
 nnoremap [tab] <Nop>
 nmap t [tab]
-nnoremap <silent> [tab]t :<C-u>tabnew<CR>
-nnoremap <silent> [tab]e :<C-u>tabnew<Space>%<CR>
+nnoremap <silent> [tab]c :<C-u>tabnew<CR>
 nnoremap <silent> [tab]n :<C-u>tabnext<CR>
 nnoremap <silent> [tab]p :<C-u>tabprevious<CR>
-nnoremap <silent> [tab]c :<C-u>tabclose<CR>
+nnoremap <silent> [tab]x :<C-u>tabclose<CR>
 nnoremap <silent> [tab]f :<C-u>tabfirst<CR>
 nnoremap <silent> [tab]l :<C-u>tablast<CR>
+nnoremap <silent> [tab]e :<C-u>tabnew<Space>%<CR>
 
 for s:i in range(1, 9)
   let s:moveTo = s:i - 1
@@ -433,7 +434,8 @@ let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,n
 "      \ 'proprietary attribute "ng-',
 "      \ ]
 let g:syntastic_html_checkers = []
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_filetype_map = { "aura-javascript": "javascript" } 
 "}}}
@@ -700,7 +702,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'relativepath', 'syntastic', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified' ] ]
       \ },
       \ 'inactive': {
       \   'left': [ [],
@@ -708,24 +710,8 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag'
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error'
       \ }
       \ }
-
-let g:syntastic_mode_map = { 'mode': 'passive' }
-augroup MyAutoCmd
-  autocmd BufWritePost *.c,*.cpp,*.rb,*.py,*.js,*.coffee,*.vim call s:syntastic()
-augroup END
-
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
 " }}}
 
 " openbrowser {{{

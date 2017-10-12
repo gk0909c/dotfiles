@@ -49,3 +49,16 @@ on_ft = [ 'typescript' ]
 [[plugins]]
 repo = 'sunaku/vim-ruby-minitest'
 on_ft = [ 'ruby' ]
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_cmd = [ 'PrevimOpen' ]
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+on_cmd = [ 'SyntasticCheck' ]
+build = 'npm install -g eslint eslint-plugin-react'
+
+[[plugins]]
+repo = 'mattn/benchvimrc-vim'
+on_cmd = [ 'BenchVimrc' ]
