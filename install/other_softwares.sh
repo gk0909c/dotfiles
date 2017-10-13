@@ -24,7 +24,7 @@ nodebrew use v6.11.2
 npm update -g npm
 
 # python
-sudo apt -y install libssl-dev
+sudo apt -y install libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
 brew install pyenv
 pyenv install 3.6.2
 pyenv global 3.6.2
