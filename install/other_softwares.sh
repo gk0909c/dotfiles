@@ -5,7 +5,9 @@ brew install git
 
 # vim
 brew install lua
-brew install vim --with-lua
+brew install python3
+brew install vim --with-python3 --with-lua
+
 
 # tmux
 brew install tmux
