@@ -689,6 +689,7 @@ augroup MyAutoCmd
 augroup END
 
 let g:previm_custom_css_path = expand('~/.vim/vimpreview.css')
+let g:previm_open_cmd="start chrome"
 " }}}
 
 " bookmark setting {{{
